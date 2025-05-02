@@ -13,12 +13,12 @@
     <header class="header">	
         <div class="header__inner">	
             <a class="header__logo" href="/">
-                <!-- ロゴを保存しておく -->
                 <img src="/public/img/" alt="COACHTECH">
             </a>	
         </div>	
     </header>	
-
-    
+    <main>
+    @yield('content')
+    </main>  
 </body>
 </html>
