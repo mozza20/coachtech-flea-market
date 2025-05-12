@@ -23,6 +23,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function mylists(){
+        return $this->belongsToMany(Item::class, 'mylists')->withTimestamps();
+}
+
     /**
      * The attributes that should be hidden for serialization.
      *

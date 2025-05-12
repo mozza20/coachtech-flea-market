@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     public function index(){
-        return view('top');
+        $items = Auth::user()->mylists()->with('category', 'condition')->get();
+        return view('top', compact('items'));
     }
+
+    public function liked(){
+        $items = Auth::user()->mylists;
+        return view('items.mylist', compact('items'));
+    }
+
 
 
     /**

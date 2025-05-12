@@ -14,7 +14,8 @@
     @section('no-nav')
     @endsection
     <div clsss="register__content">
-        <form action="register__form">
+        <form class="register__form" action="/" method="POST">
+            @csrf
             <div class="form-area">
                 <label class="">ユーザー名</label>
                 <input class="" type="text" name="name">

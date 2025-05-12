@@ -12,7 +12,8 @@
     @section('no-nav')
     @endsection
     <div clsss="login__content">
-        <form action="login__form">
+        <form class="login__form" action="/" method="POST">
+            @csrf
             <div class="form-area">
                 <label class="">メールアドレス</label>
                 <input class="" type="email">
