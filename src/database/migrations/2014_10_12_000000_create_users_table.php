@@ -23,8 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('post_code');
             $table->string('address');
             $table->string('building')->nullable();
-            $table->string('prof_image')->nullable();
-            // $table->foreignId('mylist_id')->constrained()->cascadeOnDelete();
+            $table->string('prof_img')->nullable();
             $table->timestamps();
         });
     }

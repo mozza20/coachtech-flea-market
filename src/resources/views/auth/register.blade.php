@@ -19,18 +19,30 @@
             <div class="form-area">
                 <label class="">ユーザー名</label>
                 <input class="" type="text" name="name">
+                @error('name')
+                {{ $message }} 
+                @enderror
             </div>
             <div class="form-area">
                 <label class="">メールアドレス</label>
                 <input class="" type="email" name="email">
+                @error('email')
+                {{ $message }} 
+                @enderror
             </div>
             <div class="form-area">
                 <label class="">パスワード</label>
                 <input class="" type="password" name="password">
+                @error('password')
+                {{ $message }} 
+                @enderror
             </div>
             <div class="form-area">
                 <label class="">確認用パスワード</label>
                 <input class="" type="password" name="password_confirmation">
+                @error('password')
+                {{ $message }} 
+                @enderror
             </div>
             <button class="register__button">登録する</button>
             <a class="link--login" href="/login">ログインはこちら</a>
