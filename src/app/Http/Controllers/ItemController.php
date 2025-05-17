@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Auth;
 class ItemController extends Controller
 {
     public function index(){
-        $items = Auth::user()->mylists()->with('category', 'condition')->get();
+        $items = Item::with('category', 'condition')->get();
         return view('top', compact('items'));
     }
+    // user()の後ろに->mylists()、自分が出品した商品以外の表示コードを入れる
+    // ログインしたときとしてないときおｎ表示を変える
 
     public function liked(){
         $items = Auth::user()->mylists;

@@ -13,13 +13,13 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
-            $table->text('content');
-            $table->timestamps();
-        });
+        // Schema::create('comments', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        //     $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+        //     $table->text('content');
+        //     $table->timestamps();
+        // });
     }
 
     /**

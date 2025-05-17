@@ -22,9 +22,11 @@ Route::get('/register', [AuthController::class, 'user']);
 // 登録ボタン(とりあえずTOP画面へ)
 Route::post('/',[AuthController::class,'store'])->name('profile');
 
+//ログイン画面の表示
+Route::get('/login',[AuthController::class,'showLoginForm']);
 //ログインボタン(とりあえずユーザ認証なしで遷移)
-// Route::get('/',[AdminController::class,'login'])->middleware(['auth'])->name('admin');
-Route::get('/',[AdminController::class,'login'])->name('admin');
+// Route::post('/',[AuthController::class,'login'])->middleware(['auth'])->name('admin');
+Route::post('/',[AuthController::class,'login'])->name('login');
 
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');

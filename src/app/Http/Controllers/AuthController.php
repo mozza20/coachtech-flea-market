@@ -18,11 +18,15 @@ class AuthController extends Controller
 
     // 会員登録ボタン→(プロフィール設定)とりあえず商品詳細画面へ
     public function store(RegisterRequest $request){
-        $user=$request->only(['name','email','password']);
-        $user['password']=Hash::make($user['password']);
-        User::create($user);
-        return redirect('/',compact('user'));
+        $data = $request->only(['name', 'email', 'password']);
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+
+        // ログイン
+        Auth::login($user);
+        return redirect('/');
     }
+
 
     // ログイン画面の表示
     public function showLoginForm(){
@@ -30,7 +34,14 @@ class AuthController extends Controller
     }
     //ログインボタン→商品詳細画面へ
     public function login(LoginRequest $request){
-        $user=$request->only(['email','password']);
-        return view('/',compact('user'));
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('/');
+        }
+
+        return back()->withErrors([
+            'password' => 'ログイン情報が登録されていません',
+        ])->withInput();
     }
 }

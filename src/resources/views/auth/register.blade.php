@@ -14,18 +14,18 @@
     @section('no-nav')
     @endsection
     <div clsss="register__content">
-        <form class="register__form" action="/" method="POST">
+        <form class="register__form" action="{{route('profile')}}" method="POST">
             @csrf
             <div class="form-area">
                 <label class="">ユーザー名</label>
-                <input class="" type="text" name="name">
+                <input class="" type="text" name="name" value="{{old('name')}}">
                 @error('name')
                 {{ $message }} 
                 @enderror
             </div>
             <div class="form-area">
                 <label class="">メールアドレス</label>
-                <input class="" type="email" name="email">
+                <input class="" type="email" name="email" value="{{old('email')}}">
                 @error('email')
                 {{ $message }} 
                 @enderror
@@ -45,7 +45,7 @@
                 @enderror
             </div>
             <button class="register__button">登録する</button>
-            <a class="link--login" href="/login">ログインはこちら</a>
+            <a class="link--login" href="('auth.login')">ログインはこちら</a>
         </form>
     </div>
 </div>

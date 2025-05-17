@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('post_code');
-            $table->string('address');
+            $table->string('post_code')->nullable();
+            $table->string('address')->nullable();
             $table->string('building')->nullable();
             $table->string('prof_img')->nullable();
             $table->timestamps();

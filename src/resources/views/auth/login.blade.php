@@ -12,11 +12,11 @@
     @section('no-nav')
     @endsection
     <div clsss="login__content">
-        <form class="login__form" action="/" method="POST">
+        <form class="login__form" action="{{route('login')}}" method="POST">
             @csrf
             <div class="form-area">
                 <label class="">メールアドレス</label>
-                <input class="" type="email">
+                <input class="" type="email" value="{{old('email')}}">
             </div>
             <div class="form-area">
                 <label class="">パスワード</label>

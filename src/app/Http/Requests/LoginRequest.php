@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Validator;
 
 class LoginRequest extends FormRequest
 {
@@ -24,7 +26,16 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email'=>['required'],
+            'password'=>['required'],
         ];
     }
+
+    public function messages(){
+        return[
+            'email.required'=>'メールアドレスを入力してください',
+            'password.required'=>'パスワードを入力してください',
+        ];
+    }
+
 }

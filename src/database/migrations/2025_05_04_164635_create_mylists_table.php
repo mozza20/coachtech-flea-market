@@ -13,12 +13,12 @@ class CreateMylistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mylists', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('item_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
-        });
+        // Schema::create('mylists', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+        //     $table->foreignId('item_id')->constrained()->cascadeOnDelete();
+        //     $table->timestamps();
+        // });
     }
 
     /**
