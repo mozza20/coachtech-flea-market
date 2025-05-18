@@ -14,17 +14,17 @@
 </head>
 <body>
     <header class="header">	
-            <a class="header__logo" href="/">
-                <img src="/public/img/" alt="COACHTECH">
-            </a>
-            @if(!View::hasSection('no-nav'))
-            <input class="header-nav__search" type="text" placeholder="なにをお探しですか？">
-            <div class="header-nav__buttons">
-                <button>ログアウト</button>
-                <button>マイページ</button>
-                <button>出品</button>
-            </div>
-            @endif
+        <a class="header__logo" href="/">
+            <img src="{{asset('img/logo.svg')}}" alt="COACHTECH">
+        </a>
+        @if(!View::hasSection('no-nav'))
+        <input class="header-nav__search" type="text" placeholder="なにをお探しですか？">
+        <div class="header-nav__buttons">
+            <button>ログアウト</button>
+            <button>マイページ</button>
+            <button>出品</button>
+        </div>
+        @endif
     </header>
     <main>
     @yield('content')

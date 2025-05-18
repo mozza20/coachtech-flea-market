@@ -14,7 +14,7 @@
         {{-- @foreach('') --}}
         <a href="/item/:item_id">
             <div class="">
-                <img class="products-img" src="" alt="商品画像">
+                <img class="products-img" src="{{ asset('storage/product-img/product_Armani_Mens_Clock.jpg') }}" alt="商品画像">
                 <p class="products-name"></p>
             </div>
         </a>
