@@ -18,14 +18,14 @@ use App\Http\Controllers\AuthController;
 */
 
 //登録画面の表示
-Route::get('/register', [AuthController::class, 'user']);
-// 登録ボタン(とりあえずTOP画面へ)
-Route::post('/',[AuthController::class,'store'])->name('profile');
+Route::get('/register', [AuthController::class, 'user'])->name('auth.register');
+// 登録ボタンで登録内容を保存
+Route::post('/register',[AuthController::class,'store'])->name('register');
 
 //ログイン画面の表示
-Route::get('/login',[AuthController::class,'showLoginForm']);
-//ログインボタン(とりあえずユーザ認証なしで遷移)
-// Route::post('/',[AuthController::class,'login'])->middleware(['auth'])->name('admin');
+Route::get('/login',[AuthController::class,'showLoginForm'])->name('auth.login');
+//ログインボタン(とりあえずユーザ認証なしで遷移)でログイン情報を保存
+// Route::post('/',[AuthController::class,'login'])->middleware(['auth'])->name('login');
 Route::post('/',[AuthController::class,'login'])->name('login');
 
 

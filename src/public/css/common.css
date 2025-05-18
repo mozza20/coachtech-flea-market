@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    max-width: 1540px;
+    width: 1540px;
     height: 80px;
     align-items: center;
     background-color: #000000;
@@ -14,6 +14,7 @@
 .header__logo {
     width: 370px;
     height: 36px;
+    margin-left: 30px;
     text-decoration: none;
     color: #ffffff;
 }
@@ -49,29 +50,96 @@
     color: #000000;
 }
 
+/* mainタイトル*/
+.content {
+    text-align: center;
+}
 
+.content__title {
+    margin-top: 80px;
+    font-family: 'Inter';
+    font-size: 36px;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* ログイン、会員登録画面のフォーム */
+.form-area {
+    width: 680px;
+    margin: 30px auto;
+    color: #000000;
+    font-size: 24px;
+}
+
+.form__label {
+    display: block;
+    text-align: left;
+    font-family: 'Inter';
+    font-weight: 700;
+}
+
+.form__input {
+    width: 680px;
+    height: 56px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+}
+
+.form__error-message {
+    display: block;
+    margin-top: 0;
+    text-align: left;
+    color: #FF5555;
+}
+
+/* ログイン、会員登録、プロフィール設定・編集、出品、送付先住所変更、メール認証画面*/
+.form__button {
+    display: block;
+    width: 680px;
+    margin: 50px auto 20px auto;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #FF5555;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 26px;
+}
+
+.under-button__link {
+    text-decoration: none;
+    color: #0073CC;
+    font-size: 20px;
+
+}
+
+
+/* レスポンシブデザイン */
 @media screen and (max-width: 850px) {
-    .header__logo {
-        width: 200px;
-        height: 50px;
+    .header {
+        display: block;
+        height: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
 
+    .header__logo,
+    .header-nav__search,
+    .header-nav__buttons {
+        display: block;
+        margin-left: 50px;
+    }
+
+    .header__logo,
     .header-nav__search {
-        width: 270px;
-        height: 40px;
-        font-size: 80%;
+        margin-bottom: 30px;
     }
 
     .header-nav__buttons {
-        width: 250px;
-    }
-
-    .header-nav__buttons button {
-        font-size: 80%;
+        padding: 0;
     }
 
     .header-nav__buttons button:last-child {
-        width: 55px;
-        height: 40px;
+        margin-left: 10px;
     }
 }

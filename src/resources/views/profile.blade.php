@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="profile">
-    <h2 class="profile__ttl">プロフィール設定</h2>
+<div class="content">
+    <h2 class="content__title">プロフィール設定</h2>
     <form class="prof-edit__form" action="" method="POST">
         @csrf
         <div class="prof-img__area">
@@ -29,7 +29,7 @@
             <label class="">建物名</label>
             <input class="" type="text" placeholder="既存の値が入力されている">
         </div>
-        <button class="prof-update__btn">更新する</button>
+        <button class="form__button">更新する</button>
     </form>
 </div>
 @endsection
