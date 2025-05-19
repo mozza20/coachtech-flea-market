@@ -29,6 +29,9 @@ Route::get('/login',[AuthController::class,'showLoginForm'])->name('auth.login')
 Route::post('/',[AuthController::class,'login'])->name('login');
 
 
+// プロフィール設定画面の表示
+Route::get('/mypage/profile',[AuthController::class,'profile'])->name('profile');
+
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
 

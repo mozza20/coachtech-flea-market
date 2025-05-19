@@ -45,4 +45,9 @@ class AuthController extends Controller
             'password' => 'ログイン情報が登録されていません',
         ])->withInput();
     }
+
+    // プロフィール設定画面(とりあえず)表示
+    public function profile(){
+        return view('profile');
+    }
 }

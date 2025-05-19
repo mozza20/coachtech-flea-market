@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    width: 1540px;
+    min-width: 1540px;
     height: 80px;
     align-items: center;
     background-color: #000000;
@@ -81,8 +81,10 @@
 .form__input {
     width: 680px;
     height: 56px;
+    padding-left: 20px;
     border: 1px solid #5F5F5F;
     border-radius: 4px;
+    font-size: 24px;
 }
 
 .form__error-message {
