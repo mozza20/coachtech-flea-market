@@ -33,11 +33,11 @@
             <div class="form-area">
                 <label class="form__label" for="password">パスワード</label>
                 <input class="form__input" id="password" type="password" name="password">
-                <p class="form__error-message">
+                <!-- <p class="form__error-message">
                     @error('password')
                     {{ $message }} 
                     @enderror
-                </p>
+                </p> -->
             </div>
             <div class="form-area">
                 <label class="form__label" for="password_confirmation">確認用パスワード</label>

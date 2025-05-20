@@ -28,6 +28,9 @@
                     @error('password')
                     {{ $message }} 
                     @enderror
+                    @if($errors->has('login'))
+                        {{$errors->first('login')}}
+                    @endif
                 </p>
             </div>
             <button class="form__button">ログインする</button>

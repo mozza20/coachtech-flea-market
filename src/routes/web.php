@@ -35,7 +35,7 @@ Route::get('/mypage/profile',[AuthController::class,'profile'])->name('profile')
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
 
-Route::post('/item/{item_id}',[ItemController::class,'exhibition']);
+Route::post('/item/{item_id}',[ItemController::class,'exhibition'])->name('exhibition');
 
 
 //いいね機能

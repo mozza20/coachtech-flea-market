@@ -14,7 +14,12 @@ class ItemController extends Controller
         return view('top', compact('items'));
     }
     // user()の後ろに->mylists()、自分が出品した商品以外の表示コードを入れる
-    // ログインしたときとしてないときおｎ表示を変える
+    // ログインしたときとしてないときの表示を変える
+
+    public function exhibit(Request $request){
+        $item=Item::with('id')->get();
+        return view('exhibition',compact('item'));
+    }
 
     public function liked(){
         $items = Auth::user()->mylists;

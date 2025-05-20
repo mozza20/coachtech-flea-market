@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name'=>['required','string','max:255'],
-            'email'=>['required','string','email','max:255'],
+            'email'=>['required','email','max:255','unique:users,email'],
             'password'=>['required','string','min:8','confirmed'],
         ];
     }
@@ -33,7 +33,9 @@ class RegisterRequest extends FormRequest
     public function messages(){
         return[
             'name.required'=>'お名前を入力してください',
+            // メールアドレスのエラーメッセージ追加
             'email.required'=>'メールアドレスを入力してください',
+            'email.unique'=>'このメールアドレスは既に使用されています',
             'password.required'=>'パスワードを入力してください',
             'password.min'=>'パスワードは8文字以上で入力してください',
             'password.confirmed'=>'パスワードと一致しません',
