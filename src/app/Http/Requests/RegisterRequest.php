@@ -33,7 +33,6 @@ class RegisterRequest extends FormRequest
     public function messages(){
         return[
             'name.required'=>'お名前を入力してください',
-            // メールアドレスのエラーメッセージ追加
             'email.required'=>'メールアドレスを入力してください',
             'email.unique'=>'このメールアドレスは既に使用されています',
             'password.required'=>'パスワードを入力してください',

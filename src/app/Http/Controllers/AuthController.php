@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ProfileRequest;
 use App\Models\User;
 
 
@@ -25,7 +26,7 @@ class AuthController extends Controller
 
         // ログイン
         Auth::login($user);
-        return redirect('/');
+        return redirect('/mypage/profile');
     }
 
 
@@ -48,6 +49,14 @@ class AuthController extends Controller
 
     // プロフィール設定画面(とりあえず)表示
     public function profile(){
-        return view('profile');
+        $user=Auth::user();
+        return view('profile',compact('user'));
+    }
+
+    // プロフィールの更新
+    public function update(ProfileRequest $request){
+        $user=$request->all();
+        Auth::find(['$request->id'])->update($user);
+        return redirect('/');
     }
 }

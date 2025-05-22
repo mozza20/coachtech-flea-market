@@ -24,9 +24,10 @@ Route::post('/register',[AuthController::class,'store'])->name('register');
 
 //ログイン画面の表示
 Route::get('/login',[AuthController::class,'showLoginForm'])->name('auth.login');
-//ログインボタン(とりあえずユーザ認証なしで遷移)でログイン情報を保存
-// Route::post('/',[AuthController::class,'login'])->middleware(['auth'])->name('login');
-Route::post('/',[AuthController::class,'login'])->name('login');
+
+//ログインボタンでログインしてトップページへ
+Route::post('/',[AuthController::class,'login'])->middleware(['auth'])->name('login');
+// Route::post('/',[AuthController::class,'login'])->name('login');
 
 
 // プロフィール設定画面の表示

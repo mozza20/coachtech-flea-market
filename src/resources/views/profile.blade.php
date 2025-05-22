@@ -8,6 +8,7 @@
 <div class="content">
     <h2 class="content__title">プロフィール設定</h2>
     <form class="prof-edit__form" action="" method="POST">
+        @method('PATCH')
         @csrf
         <div class="prof-img__area">
             <img class="user-img" src="" alt="">
@@ -15,7 +16,7 @@
         </div>
         <div class="prof-edit__group">
             <label class="">ユーザー名</label>
-            <input class="" type="text" placeholder="既存の値が入力されている">
+            <input class="" type="text" placeholder="{{$user->name}}">
         </div>
         <div class="prof-edit__group">
             <label class="">郵便番号</label>
