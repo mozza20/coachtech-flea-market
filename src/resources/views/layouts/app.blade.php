@@ -19,11 +19,16 @@
         </a>
         @if(!View::hasSection('no-nav'))
         <input class="header-nav__search" type="text" placeholder="なにをお探しですか？">
-        <div class="header-nav__buttons">
-            <button>ログアウト</button>
-            <button>マイページ</button>
-            <button>出品</button>
-        </div>
+            {{--@if(Auth::check())--}}
+            <div class="header-nav__buttons">
+                <form class="logout-button" action="{{route('logout')}}" method=POST>
+                    @csrf
+                    <button type="submit" name="logout">ログアウト</button>
+                </form>
+                <a class="mypage-link" href="">マイページ</a>
+                <a class="sellpage-link" href="">出品</a>
+            </div>
+            {{--@endif--}}
         @endif
     </header>
     <main>

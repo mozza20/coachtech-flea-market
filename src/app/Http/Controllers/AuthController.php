@@ -18,7 +18,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    // 会員登録ボタン→(プロフィール設定)とりあえず商品詳細画面へ
+    // 会員登録ボタン→プロフィール設定画面へ
     public function store(RegisterRequest $request){
         $data = $request->only(['name', 'email', 'password']);
         $data['password'] = Hash::make($data['password']);
@@ -47,7 +47,7 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    // プロフィール設定画面(とりあえず)表示
+    // プロフィール設定画面表示
     public function profile(){
         $user=Auth::user();
         return view('profile',compact('user'));
@@ -55,8 +55,14 @@ class AuthController extends Controller
 
     // プロフィールの更新
     public function update(ProfileRequest $request){
-        $user=$request->all();
-        Auth::find(['$request->id'])->update($user);
+        $user=Auth::user();
+        $user->update($request->all());
         return redirect('/');
+    }
+
+    //ログアウト(とりあえずログイン画面へ遷移させる)
+    public function logout(){
+        Auth::logout();
+        return redirect('/login');
     }
 }

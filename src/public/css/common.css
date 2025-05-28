@@ -32,21 +32,33 @@
     justify-content: space-between;
     width: 463px;
     padding: 0 20px;
+    font-family: "Inter", serif;
 }
 
-.header-nav__buttons button {
+.logout-button button {
     border: none;
     outline: none;
     background-color: transparent;
     color: #ffffff;
+    font-family: "Inter", serif;
     font-size: 24px;
 }
 
-.header-nav__buttons button:last-child {
+.mypage-link {
+    text-decoration: none;
+    font-family: "Inter", serif;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.sellpage-link {
+    text-decoration: none;
     width: 100px;
     height: 50px;
+    text-align: center;
     background-color: #ffffff;
     border-radius: 5px;
+    font-family: "Inter", serif;
     color: #000000;
 }
 
