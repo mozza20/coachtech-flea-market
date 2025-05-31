@@ -23,10 +23,10 @@ Route::get('/register', [AuthController::class, 'user'])->name('auth.register');
 Route::post('/register',[AuthController::class,'store'])->name('register');
 
 //ログイン画面の表示
-Route::get('/login',[AuthController::class,'showLoginForm'])->name('auth.login');
+Route::get('/login',[AuthController::class,'showLoginForm'])->middleware('guest')->name('auth.login');
 
 //ログイン処理
-Route::post('/login',[AuthController::class,'login'])->middleware(['auth'])->name('login');
+Route::post('/login',[AuthController::class,'login'])->middleware(['guest'])->name('login');
 
 //ログイン処理後のトップページ表示 
 Route::middleware('auth')->group(function () {
@@ -40,8 +40,13 @@ Route::get('/mypage/profile',[AuthController::class,'profile'])->name('profile')
 Route::patch('/mypage/profile',[AuthController::class,'update'])->name('update');
 
 // ログアウト
-Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+Route::post('/logout',[AuthController::class,'logout'])->middleware('auth')->name('logout');
 
+// マイページの表示
+Route::get('/mypage',[AuthController::class,'mypage'])->name('mypage');
+
+// 出品画面表示
+Route::get('/sell',[ItemController::class,'sell'])->name('sell');
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 

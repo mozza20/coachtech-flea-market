@@ -1,0 +1,33 @@
+.product-img__area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 680px;
+    height: 150px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+}
+
+.product-info__area {
+    display: block;
+    width: 680px;
+    margin: 0 auto;
+}
+
+.info__title {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #5F5F5F;
+    color: #5F5F5F;
+    font-size: 30px;
+}
+
+.info__condition {
+    width: 680px;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    font-size: 16px;
+}

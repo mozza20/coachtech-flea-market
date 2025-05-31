@@ -16,6 +16,12 @@ class ItemController extends Controller
     // user()の後ろに->mylists()、自分が出品した商品以外の表示コードを入れる
     // ログインしたときとしてないときの表示を変える
 
+    //出品画面表示
+    public function sell(){
+        $user=Auth::user();
+        return view('sell',compact('user'));
+    }
+
     public function exhibit(Request $request){
         $item=Item::with('id')->get();
         return view('exhibition',compact('item'));

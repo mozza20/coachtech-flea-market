@@ -13,23 +13,34 @@
 
 </head>
 <body>
-    <header class="header">	
-        <a class="header__logo" href="/">
-            <img src="{{asset('img/logo.svg')}}" alt="COACHTECH">
-        </a>
-        @if(!View::hasSection('no-nav'))
-        <input class="header-nav__search" type="text" placeholder="なにをお探しですか？">
-            {{--@if(Auth::check())--}}
-            <div class="header-nav__buttons">
-                <form class="logout-button" action="{{route('logout')}}" method=POST>
-                    @csrf
-                    <button type="submit" name="logout">ログアウト</button>
-                </form>
-                <a class="mypage-link" href="">マイページ</a>
-                <a class="sellpage-link" href="">出品</a>
-            </div>
-            {{--@endif--}}
-        @endif
+    <header class="header">
+        <div class="header__inner">	
+            <a class="header__logo" href="/">
+                <img src="{{asset('img/logo.svg')}}" alt="COACHTECH">
+            </a>
+            @if(!View::hasSection('no-nav'))
+            <input class="header-nav__search" type="text" placeholder="なにをお探しですか？">
+                @if(Auth::check())
+                <div class="header-nav__buttons">
+                    <form class="logout-button" action="{{route('logout')}}" method=POST>
+                        @csrf
+                        <button type="submit" name="logout">ログアウト</button>
+                    </form>
+                    <a class="mypage-link" href="/mypage">マイページ</a>
+                    <a class="sellpage-link" href="/sell">出品</a>
+                </div>
+                @else
+                <div class="header-nav__buttons">
+                    <form class="login-button" action="{{route('auth.login')}}" method=GET>
+                        @csrf
+                        <button type="submit" name="login">ログイン</button>
+                    </form>
+                    <a class="mypage-link" href="/mypage">マイページ</a>
+                    <a class="sellpage-link" href="">出品</a>
+                </div>
+                @endif
+            @endif
+        </div>
     </header>
     <main>
     @yield('content')

@@ -21,8 +21,7 @@ class ProfileRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(){
         return [
             'prof_img'=>['file','mimes:jpeg,png'],
         ];

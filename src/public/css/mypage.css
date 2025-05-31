@@ -1,0 +1,51 @@
+.user-info__area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px auto;
+}
+
+.user-info {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-right: 200px;
+}
+
+.user-img__area {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin-right: 50px;
+    background-color: #D9D9D9;
+    border-radius: 75px;
+    text-align: center;
+}
+
+.user-name {
+    font-size: 36px;
+}
+
+.prof-edit__btn {
+    width: 310px;
+    height: 59px;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #FF5555;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.mypage-list {
+    display: flex;
+    border-bottom: 2px solid #5F5F5F;
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+}
+
+
+.mypage-list p:first-child {
+    margin-right: 50px;
+    margin-left: 100px;
+}

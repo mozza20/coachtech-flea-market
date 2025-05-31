@@ -1,0 +1,27 @@
+.prof-img__area {
+    display: flex;
+    align-items: center;
+    width: 680px;
+    margin: 30px auto;
+}
+
+.user-img__area {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin-right: 50px;
+    background-color: #D9D9D9;
+    border-radius: 75px;
+    text-align: center;
+}
+
+.user-img--edit {
+    width: 179px;
+    height: 49px;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #FF5555;
+    font-size: 20px;
+    font-weight: 700;
+}

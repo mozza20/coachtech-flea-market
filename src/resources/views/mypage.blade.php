@@ -6,11 +6,18 @@
 
 @section('content')
 <div class="mypage">
-    <div class="user-info">
-        <img class="user-img" src="" alt="">
-        <h2 cass="user-name">ユーザー名</h2>
-        <button class="prof-edit__btn">プロフィールを編集</button>
+    <div class="user-info__area">
+        <div class="user-info">
+            <div class="user-img__area">
+                <img class="user-img" src="" alt="">
+            </div>
+            <h2 cass="user-name">ユーザー名</h2>
+        </div>    
+        <form class="prof-edit__form" action="{{route('profile')}}" method="GET">
+            <button class="prof-edit__btn">プロフィールを編集</button>
+        </form>
     </div>
+    
     <div class="mypage-list">
         <p class="">出品した商品</p>
         <p class="">購入した商品</p>

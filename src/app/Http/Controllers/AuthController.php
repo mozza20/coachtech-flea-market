@@ -34,17 +34,24 @@ class AuthController extends Controller
     public function showLoginForm(){
         return view('auth.login');
     }
-    //ログインボタン→商品詳細画面へ
+    //ログインボタン→トップページへ
     public function login(LoginRequest $request){
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            //セキュリティ強化
+            $request->session()->regenerate(); 
             return redirect()->intended('/');
         }
 
         return back()->withErrors([
             'login' => 'ログイン情報が登録されていません',
         ])->withInput();
+    }
+
+    // トップページの表示
+    public function index(){
+        return view('top');
     }
 
     // プロフィール設定画面表示
@@ -61,8 +68,18 @@ class AuthController extends Controller
     }
 
     //ログアウト(とりあえずログイン画面へ遷移させる)
-    public function logout(){
+    public function logout(Request $request){
         Auth::logout();
+        // セッションの全データ削除
+        $request->session()->invalidate();
+        // CSRFトークンの再発行
+        $request->session()->regenerateToken();
         return redirect('/login');
+    }
+
+    // マイページへ遷移
+    public function mypage(){
+        $user=Auth::user();
+        return view('mypage',compact('user'));
     }
 }

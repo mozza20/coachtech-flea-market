@@ -1,27 +1,43 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 .header {
+    background-color: #000000;
+    width: 100%;
+}
+
+.header__inner {
     display: flex;
     justify-content: space-between;
-    min-width: 1540px;
-    height: 80px;
     align-items: center;
-    background-color: #000000;
-    font-family: "Inter", serif;
+    width: 100%;
+    max-width: 1540px;
+    height: 80px;
+    margin: 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin: 0;
+
 }
 
 .header__logo {
-    width: 370px;
     height: 36px;
-    margin-left: 30px;
     text-decoration: none;
     color: #ffffff;
 }
 
 .header-nav__search {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     height: 50px;
+    margin-left: 10px;
+    padding: 8px 16px;
     border-radius: 5px;
     color: #000000;
     font-size: 24px;
@@ -30,35 +46,37 @@
 .header-nav__buttons {
     display: flex;
     justify-content: space-between;
-    width: 463px;
+    width: 100%;
+    max-width: 463px;
     padding: 0 20px;
-    font-family: "Inter", serif;
+    font-size: 24px;
 }
 
-.logout-button button {
+.logout-button button,
+.login-button button {
+    padding-top: 8px;
     border: none;
     outline: none;
     background-color: transparent;
     color: #ffffff;
-    font-family: "Inter", serif;
     font-size: 24px;
 }
 
 .mypage-link {
+    padding-top: 8px;
     text-decoration: none;
-    font-family: "Inter", serif;
     color: #ffffff;
-    font-size: 24px;
 }
 
 .sellpage-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     width: 100px;
     height: 50px;
-    text-align: center;
     background-color: #ffffff;
     border-radius: 5px;
-    font-family: "Inter", serif;
     color: #000000;
 }
 
@@ -75,7 +93,7 @@
     color: #000000;
 }
 
-/* ログイン、会員登録画面のフォーム */
+/* ログイン、会員登録画面、プロフィール設定画面のフォーム */
 .form-area {
     width: 680px;
     margin: 30px auto;
@@ -129,12 +147,29 @@
 
 
 /* レスポンシブデザイン */
+@media screen and (min-width:1400px) and (max-width: 1540px) {
+
+    .header-nav__buttons,
+    .logout-button button,
+    .login-button button,
+    .mypage-link,
+    .sellpage-link {
+        font-size: 18px;
+    }
+}
+
 @media screen and (max-width: 850px) {
     .header {
-        display: block;
+
+        width: 100%;
+    }
+
+    .header__inner {
+        display: grid;
+        grid-column: 1;
+        width: 100%;
         height: 100%;
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding: 30px 0;
     }
 
     .header__logo,
@@ -150,10 +185,13 @@
     }
 
     .header-nav__buttons {
+        display: flex;
+        justify-content: left;
+        gap: 10px;
         padding: 0;
     }
 
-    .header-nav__buttons button:last-child {
+    .sellpage-link {
         margin-left: 10px;
     }
 }
