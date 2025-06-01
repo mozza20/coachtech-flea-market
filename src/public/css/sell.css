@@ -23,11 +23,60 @@
     font-size: 30px;
 }
 
-.info__condition {
+.form__checkboxs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.info__input--categories {
+    display: none;
+}
+
+.info__label--categories {
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 0 12px;
+    border: 2px solid #FF5655;
+    border-radius: 200px;
+    background-color: #D9D9D900;
+    color: #FF5655;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.info--condition {
     width: 680px;
     height: 45px;
     padding: 10px;
     border: 1px solid #5F5F5F;
     border-radius: 4px;
     font-size: 16px;
+}
+
+.info__condition option {
+    background-color: #636769;
+    border: 1.5px solid #B1B1B1;
+    border-radius: 5px;
+
+}
+
+.price-group {
+    position: relative;
+    display: inline-block;
+}
+
+.yen-symbol {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-55%);
+    pointer-events: none;
+}
+
+.price-group .form__input {
+    padding-left: 40px;
+}
+
+.form-area:last-child {
+    margin-bottom: 100px;
 }

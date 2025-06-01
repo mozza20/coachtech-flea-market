@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Condition;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,8 +20,12 @@ class ItemController extends Controller
 
     //出品画面表示
     public function sell(){
-        $user=Auth::user();
-        return view('sell',compact('user'));
+        if(Auth::check()){
+            $categories=Category::all();
+            $conditions=Condition::all();
+            return view('sell',compact('categories','conditions'));
+        }
+        return redirect('/login');
     }
 
     public function exhibit(Request $request){

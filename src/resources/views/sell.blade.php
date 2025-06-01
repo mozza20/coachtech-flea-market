@@ -17,16 +17,25 @@
         </div>
         <div class="product-info__area">
             <h3 class="info__title">商品の詳細</h3>
-            <input class="info__categories" type="radio" name="category_id">
+            <div class="form-area">
+                <label class="form__label">カテゴリー</label>
+                <div class="form__checkboxs">
+                    @foreach($categories as $category)
+                    <input class="info__input--categories" id="category{{$category['id']}}" type="checkbox" name="category_id" value="{{$category['id']}}">
+                    <label class="info__label--categories" for="category">{{$category['content']}}</label>
+                    @endforeach
+                </div>
+            </div>
             <div class="form-area">
                 <label class="form__label">商品の状態</label>
-                <select class="info__condition" name="condition_id">
-                    <option value="">選択してください</option>
-                    <option value=""></option>
+                <select class="info--condition" name="condition_id">
+                    <option value="" selected hidden>選択してください</option>
+                    @foreach($conditions as $condition)
+                    <option value="{{$condition['id']}}">{{$condition['selection']}}</option>
+                    @endforeach
                 </select>
             </div>
-        </div>
-        <div class="product-info__area">
+
             <h3 class="info__title">商品名と説明</h3>
             <div class="form-area">
                 <label class="form__label">商品名</label>
@@ -42,9 +51,13 @@
             </div>
             <div class="form-area">
                 <label class="form__label">販売価格</label>
-                <input class="form__input" type="text" name="price">
+                <div class="price-group">
+                    <span class="yen-symbol">￥</span>
+                    <input class="form__input" type="text" name="price">
+                </div>
             </div>
         </div>
+
         <button class="form__button">出品する</button>
     </form>
 </div>
