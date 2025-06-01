@@ -9,7 +9,7 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable=['item_name','category_id','condition_id','brand','describe','price','item_url','comment_id','item_status'];
+    protected $fillable=['name','category_id','condition_id','brand','description','price','img_url','comment_id','item_status','user_id'];
 
     public function categories() {
         return $this->belongsToMany(Category::class)->withTimestamps();

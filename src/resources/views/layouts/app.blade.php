@@ -28,6 +28,7 @@
                     </form>
                     <a class="mypage-link" href="/mypage">マイページ</a>
                     <a class="sellpage-link" href="/sell">出品</a>
+
                 </div>
                 @else
                 <div class="header-nav__buttons">
@@ -35,8 +36,8 @@
                         @csrf
                         <button type="submit" name="login">ログイン</button>
                     </form>
-                    <a class="mypage-link" href="/mypage">マイページ</a>
-                    <a class="sellpage-link" href="">出品</a>
+                    <a class="mypage-link" href="{{route('auth.login')}}">マイページ</a>
+                    <a class="sellpage-link" href="{{route('auth.login')}}">出品</a>
                 </div>
                 @endif
             @endif

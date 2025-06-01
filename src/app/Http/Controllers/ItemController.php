@@ -20,12 +20,35 @@ class ItemController extends Controller
 
     //出品画面表示
     public function sell(){
-        if(Auth::check()){
-            $categories=Category::all();
-            $conditions=Condition::all();
-            return view('sell',compact('categories','conditions'));
+        $categories=Category::all();
+        $conditions=Condition::all();
+        return view('sell',compact('categories','conditions'));
+    }
+
+    // 商品の出品
+    public function store(Request $request){
+        $product=$request->only([
+            'name',
+            'img_url',
+            'condition_id',
+            'brand',
+            'description',
+            'price',
+        ]);
+         // 商品出品者を紐づける
+        $product['user_id'] = auth()->id();
+
+        // ファイルアップロード処理
+        if ($request->hasFile('item_url')) {
+            $path = $request->file('item_url')->store('items', 'public');
+            $product['item_url'] = $path;
         }
-        return redirect('/login');
+        $item=Item::create($product);
+
+        // カテゴリの紐づけ
+        $item->categories()->attach($request->input('category_ids'));
+
+        return redirect('/mypage');
     }
 
     public function exhibit(Request $request){
@@ -46,17 +69,6 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
     {
         //
     }

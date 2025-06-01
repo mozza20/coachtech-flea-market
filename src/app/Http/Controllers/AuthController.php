@@ -79,10 +79,7 @@ class AuthController extends Controller
 
     // マイページへ遷移
     public function mypage(){
-        if(Auth::check()){
-            $user=Auth::user();
-            return view('mypage',compact('user'));
-        }
-        return redirect('/login');
+        $user=Auth::user();
+        return view('mypage',compact('user'));
     }
 }

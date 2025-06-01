@@ -46,12 +46,15 @@ Route::post('/logout',[AuthController::class,'logout'])->middleware('auth')->nam
 Route::get('/mypage',[AuthController::class,'mypage'])->name('mypage');
 
 // 出品画面表示
-Route::get('/sell',[ItemController::class,'sell'])->name('sell');
+Route::get('/sell',[ItemController::class,'sell'])->middleware('auth')->name('sell');
 
-Route::get('/', [ItemController::class, 'index'])->name('items.index');
+// 出品
+Route::post('/sell',[ItemController::class,'store'])->name('product.sell');
 
 
-Route::post('/item/{item_id}',[ItemController::class,'exhibition'])->name('exhibition');
+// Route::get('/', [ItemController::class, 'index'])->name('items.index');
+
+// Route::post('/item/{item_id}',[ItemController::class,'exhibition'])->name('exhibition');
 
 
 //いいね機能

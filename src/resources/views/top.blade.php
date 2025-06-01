@@ -34,6 +34,7 @@
                 <p class="products-name">商品名</p>
             </div>
         </a>
+
         {{-- @endforeach --}}
     </div>
 

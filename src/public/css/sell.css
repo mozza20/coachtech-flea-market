@@ -35,13 +35,21 @@
 .info__label--categories {
     display: inline-block;
     margin: 10px 10px;
-    padding: 0 12px;
+}
+
+.info__label--categories span {
+    padding: 3px 12px;
     border: 2px solid #FF5655;
     border-radius: 200px;
     background-color: #D9D9D900;
     color: #FF5655;
     font-size: 15px;
     font-weight: 500;
+}
+
+.info__label--categories input:checked+span {
+    background-color: #FF5655;
+    color: #ffffff;
 }
 
 .info--condition {
@@ -53,11 +61,19 @@
     font-size: 16px;
 }
 
-.info__condition option {
+.info--condition option {
     background-color: #636769;
-    border: 1.5px solid #B1B1B1;
     border-radius: 5px;
+}
 
+.form__textarea {
+    width: 680px;
+    height: 125px;
+    padding: 10px 20px;
+    vertical-align: top;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    font-size: 24px;
 }
 
 .price-group {
