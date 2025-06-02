@@ -27,6 +27,13 @@ class ItemController extends Controller
 
     // 商品の出品
     public function store(Request $request){
+        $request->validate([
+            'name'=>'required',
+        ],
+        [
+            'name.required'=>'商品名を入力してください',
+        ]);
+
         $product=$request->only([
             'name',
             'img_url',

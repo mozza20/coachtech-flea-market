@@ -42,6 +42,11 @@
             <div class="form-area">
                 <label class="form__label">商品名</label>
                 <input class="form__input" type="text" name="name">
+                <p class="form__error-message">
+                    @error('name')
+                    {{$message}}
+                    @enderror
+                </p>
             </div>
             <div class="form-area">
                 <label class="form__label">ブランド名</label>
