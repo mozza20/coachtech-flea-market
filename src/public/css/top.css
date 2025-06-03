@@ -26,11 +26,11 @@
 }
 
 .list2 {
-    color: #FF0000;
+    color: #5F5F5F;
 }
 
 /* 商品表示 */
-.products-lists {
+.item-list {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -38,11 +38,11 @@
     width: 1013px;
 }
 
-.products-lists a {
+.item-list a {
     text-decoration: none;
 }
 
-.products {
+.item {
     display: flex;
     flex-wrap: wrap;
     width: 290px;
@@ -51,7 +51,7 @@
     color: #000000;
 }
 
-.products-img {
+.item-img {
     display: inline-block;
     text-align: center;
     vertical-align: middle;
@@ -61,7 +61,7 @@
     border-radius: 4px;
 }
 
-.products-name {
+.item-name {
     display: inline-block;
     margin-top: 10px;
 }

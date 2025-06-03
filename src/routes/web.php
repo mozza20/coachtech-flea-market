@@ -28,10 +28,11 @@ Route::get('/login',[AuthController::class,'showLoginForm'])->middleware('guest'
 //ログイン処理
 Route::post('/login',[AuthController::class,'login'])->middleware(['guest'])->name('login');
 
-//ログイン処理後のトップページ表示 
-Route::middleware('auth')->group(function () {
-    Route::get('/', [AuthController::class, 'index']);
-});
+//トップページ表示 
+Route::get('/', [AuthController::class, 'index']);
+// Route::middleware('auth')->group(function () {
+//     Route::get('/', [AuthController::class, 'index']);
+// });
 
 // プロフィール設定画面の表示
 Route::get('/mypage/profile',[AuthController::class,'profile'])->name('profile');

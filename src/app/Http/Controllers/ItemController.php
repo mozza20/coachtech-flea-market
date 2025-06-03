@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
+    // トップページを表示(AuthControllerにも同じ記述あり)
     public function index(){
-        $items = Item::with('category', 'condition')->get();
+        $items = Item::with('categories', 'condition')->get();
         return view('top', compact('items'));
     }
     // user()の後ろに->mylists()、自分が出品した商品以外の表示コードを入れる
@@ -42,6 +43,7 @@ class ItemController extends Controller
             'description',
             'price',
         ]);
+
          // 商品出品者を紐づける
         $product['user_id'] = auth()->id();
 

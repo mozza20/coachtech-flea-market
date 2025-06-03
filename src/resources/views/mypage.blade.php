@@ -22,11 +22,13 @@
         <p class="">出品した商品</p>
         <p class="">購入した商品</p>
     </div>
+
     <div class="products-data">
         <img class="product-img" src="" alt="">
         <img class="product-img" src="" alt="">
         <img class="product-img" src="" alt="">
         <img class="product-img" src="" alt="">
     </div>
+
 </div>
 @endsection

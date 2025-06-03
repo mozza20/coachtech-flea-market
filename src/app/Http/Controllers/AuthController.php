@@ -9,6 +9,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Models\User;
+use App\Models\Item;
 
 
 class AuthController extends Controller
@@ -49,9 +50,10 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    // トップページの表示
+    // トップページの表示(ItemControllerにも同じ記述あり)
     public function index(){
-        return view('top');
+        $items = Item::with('categories', 'condition')->get();
+        return view('top', compact('items'));
     }
 
     // プロフィール設定画面表示

@@ -16,7 +16,7 @@ class Item extends Model
     }
 
     public function condition(){
-        return $this->belongsTo(Condition::class)->withTimestamps();
+        return $this->belongsTo(Condition::class);
     }
 
     public function likedUsers(){
