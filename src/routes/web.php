@@ -55,7 +55,8 @@ Route::post('/sell',[ItemController::class,'store'])->name('product.sell');
 
 // Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
-// Route::post('/item/{item_id}',[ItemController::class,'exhibition'])->name('exhibition');
+//商品詳細画面の表示
+Route::get('/item/{item_id}',[ItemController::class,'show'])->name('exhibition');
 
 
 //いいね機能

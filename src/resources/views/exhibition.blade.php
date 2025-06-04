@@ -6,10 +6,9 @@
 
 @section('content')
 <div class="exhibition">
-    @foreach($items as $item)
-    <img src="product-img" alt="商品画像">
-    <div class="product-detail">
-        <h2 class="">{{$item['name']}}</h2>
+    <img src="item-img" alt="商品画像">
+    <div class="item-detail">
+        <h2 class="">{{$item->name}}</h2>
         <p class="">{{$item['brand']}}</p>
         <p class="">{{$item['price']}}<span>(税込)</span></p>
         <button class="">購入手続きへ</button>
@@ -21,7 +20,9 @@
             <h3 class="">商品の情報</h3>
             <div class=""></div>
                 <p class="">カテゴリー</p>
-                <p class="">{{$item->category->content}}</p>
+                @foreach($item->categories as $category)
+                <p class="">{{$category->content}}</p>
+                @endforeach
             </div>
             <div class="">
                 <p class="">商品の状態</p>
@@ -41,6 +42,5 @@
             </form>
         </div>
     </div>
-    @endforeach
 </div>
 @endsection

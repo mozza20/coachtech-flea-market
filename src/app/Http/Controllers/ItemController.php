@@ -60,8 +60,8 @@ class ItemController extends Controller
         return redirect('/mypage');
     }
 
-    public function exhibit(Request $request){
-        $item=Item::with('id')->get();
+    public function show($item_id){
+        $item=Item::with('categories','condition')->findOrFail($item_id);
         return view('exhibition',compact('item'));
     }
 
@@ -80,18 +80,6 @@ class ItemController extends Controller
     public function create()
     {
         //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Item $item){
-        $items=$request->all();
-        $category=Category::find($request->category_id);
-        $condition=Condition::find($request->condition_id);
     }
 
     /**

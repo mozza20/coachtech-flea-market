@@ -38,14 +38,11 @@
     width: 1013px;
 }
 
-.item-list a {
-    text-decoration: none;
-}
-
 .item {
     display: flex;
     flex-wrap: wrap;
     width: 290px;
+    text-decoration: none;
     font-size: 40px;
     font-weight: 400;
     color: #000000;
@@ -59,9 +56,12 @@
     line-height: 281px;
     background-color: #D9D9D9;
     border-radius: 4px;
+    text-decoration: none;
 }
 
 .item-name {
     display: inline-block;
     margin-top: 10px;
+    text-decoration: none;
+    font-size: 25px;
 }
