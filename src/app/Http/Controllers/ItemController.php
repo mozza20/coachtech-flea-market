@@ -65,6 +65,10 @@ class ItemController extends Controller
         return view('exhibition',compact('item'));
     }
 
+    public function add(Request $request){
+        //いいねを追加
+    }
+
     public function liked(){
         $items = Auth::user()->mylists;
         return view('items.mylist', compact('items'));

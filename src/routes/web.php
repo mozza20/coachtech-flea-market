@@ -58,6 +58,9 @@ Route::post('/sell',[ItemController::class,'store'])->name('product.sell');
 //商品詳細画面の表示
 Route::get('/item/{item_id}',[ItemController::class,'show'])->name('exhibition');
 
+// いいね・コメントの追加(商品詳細画面)
+// Route:post('/item/{item_id}',[ItemController::class,'add'])->name('exhibition');
+
 
 //いいね機能
 // 一覧表示
