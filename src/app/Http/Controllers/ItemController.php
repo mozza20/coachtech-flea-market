@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Condition;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\CommentRequest;
 
 class ItemController extends Controller
 {
@@ -27,14 +30,7 @@ class ItemController extends Controller
     }
 
     // 商品の出品
-    public function store(Request $request){
-        $request->validate([
-            'name'=>'required',
-        ],
-        [
-            'name.required'=>'商品名を入力してください',
-        ]);
-
+    public function store(ExhibitionRequest $request){
         $product=$request->only([
             'name',
             'img_url',
@@ -48,9 +44,9 @@ class ItemController extends Controller
         $product['user_id'] = auth()->id();
 
         // ファイルアップロード処理
-        if ($request->hasFile('item_url')) {
-            $path = $request->file('item_url')->store('items', 'public');
-            $product['item_url'] = $path;
+        if ($request->hasFile('img_url')) {
+            $path = $request->file('img_url')->store('items', 'public');
+            $product['img_url'] = $path;
         }
         $item=Item::create($product);
 
@@ -60,14 +56,46 @@ class ItemController extends Controller
         return redirect('/mypage');
     }
 
+    // 商品詳細画面の表示
     public function show($item_id){
         $item=Item::with('categories','condition')->findOrFail($item_id);
-        return view('exhibition',compact('item'));
+        $comments =$item->comments()->with('user')->get();
+        return view('exhibition',compact('item','comments'));
     }
+    // コメントの投稿
+    public function storeComment(CommentRequest $request, $item_id){
+        $item = Item::findOrFail($item_id);
+        Comment::create([
+            'user_id' => Auth::id(),
+            'item_id' => $item_id, 
+            'content' => $request->input('content'),
+        ]);
+        return redirect("/item/{$item_id}");
+    }
+
+    // 購入画面の表示
+    public function purchase($item_id){
+        $item=Item::with('categories','condition')->findOrFail($item_id);
+        $user=Auth::user();
+        return view('purchase',compact('item','user'));
+    }
+
+    // 購入
+    public function purchaseComplete(PurchaseRequest $request,$item_id){
+        // 該当の商品を取得
+        $item = Item::findOrFail($item_id);
+        $item->status='sold';
+        $item->buyer_id=Auth::id();
+        $item->save();
+        return redirect('/')->with('purchase_complete', '購入が完了しました');
+    }
+
+
 
     public function add(Request $request){
         //いいねを追加
     }
+
 
     public function liked(){
         $items = Auth::user()->mylists;

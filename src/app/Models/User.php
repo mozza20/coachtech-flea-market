@@ -26,6 +26,10 @@ class User extends Authenticatable
         'building'
     ];
 
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    
     public function mylists(){
         return $this->belongsToMany(Item::class, 'mylists')->withTimestamps();
 }

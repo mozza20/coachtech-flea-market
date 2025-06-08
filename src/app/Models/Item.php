@@ -9,10 +9,10 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable=['name','category_id','condition_id','brand','description','price','img_url','comment_id','item_status','user_id'];
+    protected $fillable=['name','category_id','condition_id','brand','description','price','img_url','user_id','comment_id','status','buyer_id'];
 
     public function categories() {
-        return $this->belongsToMany(Category::class)->withTimestamps();
+        return $this->belongsToMany(Category::class);
     }
 
     public function condition(){
@@ -20,10 +20,10 @@ class Item extends Model
     }
 
     public function likedUsers(){
-        return $this->belongsToMany(User::class, 'mylists')->withTimestamps()->withTimestamps();
+        return $this->belongsToMany(User::class, 'mylists')->withTimestamps();
     }
 
     public function comments(){
-        return $this->hasMany(Comment::class)->withTimestamps();
+        return $this->hasMany(Comment::class);
     }
 }

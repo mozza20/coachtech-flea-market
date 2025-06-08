@@ -1,13 +1,11 @@
 .exhibition {
     display: grid;
     grid-template-columns: 690px 690px;
-    grid-template-rows: 925px 745px;
     font-family: 'Inter', sans-serif;
 }
 
 .img-area {
     grid-column: 1/1;
-    grid-row: 1/2;
     margin: 80px auto;
     padding-top: 20px;
 }
@@ -72,7 +70,7 @@
     background-color: #ffffff;
 }
 
-.payment__button,
+.purchase__button,
 .submit__button {
     display: block;
     width: 570px;
@@ -85,7 +83,8 @@
     color: #FFFFFF;
 }
 
-.payment__button {
+.purchase__button {
+    text-decoration: none;
     font-size: 30px;
 }
 
@@ -139,9 +138,8 @@ h3 {
 
 
 /* コメントエリア */
-.comment-area {}
-
 .comment__title {
+    margin: 30px 0 0 0;
     color: #5F5F5F;
     font-size: 36px;
     font-weight: bold;
@@ -172,6 +170,10 @@ h3 {
     font-size: 20px;
 }
 
+.comment__input-area {
+    margin-top: 50px;
+}
+
 .comment__label {
     font-size: 28px;
     font-weight: bold;
@@ -179,13 +181,15 @@ h3 {
 
 .comment__input {
     width: 100%;
-    display: block;
     height: 250px;
-    margin-bottom: 50px;
-    padding: 5px 10px;
+
+    padding: 10px 10px;
+    vertical-align: top;
+    font-size: 20px;
 }
 
 .submit__button {
+    margin-top: 50px;
     font-size: 25px;
 }
 

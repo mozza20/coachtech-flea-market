@@ -19,6 +19,7 @@ use App\Http\Controllers\AuthController;
 
 //登録画面の表示
 Route::get('/register', [AuthController::class, 'user'])->name('auth.register');
+
 // 登録ボタンで登録内容を保存
 Route::post('/register',[AuthController::class,'store'])->name('register');
 
@@ -28,35 +29,44 @@ Route::get('/login',[AuthController::class,'showLoginForm'])->middleware('guest'
 //ログイン処理
 Route::post('/login',[AuthController::class,'login'])->middleware(['guest'])->name('login');
 
-//トップページ表示 
+//トップページ表示 (ログインしてなくても表示)
 Route::get('/', [AuthController::class, 'index']);
-// Route::middleware('auth')->group(function () {
-//     Route::get('/', [AuthController::class, 'index']);
-// });
-
-// プロフィール設定画面の表示
-Route::get('/mypage/profile',[AuthController::class,'profile'])->name('profile');
-
-// プロフィールの更新
-Route::patch('/mypage/profile',[AuthController::class,'update'])->name('update');
-
-// ログアウト
-Route::post('/logout',[AuthController::class,'logout'])->middleware('auth')->name('logout');
-
-// マイページの表示
-Route::get('/mypage',[AuthController::class,'mypage'])->name('mypage');
-
-// 出品画面表示
-Route::get('/sell',[ItemController::class,'sell'])->middleware('auth')->name('sell');
-
-// 出品
-Route::post('/sell',[ItemController::class,'store'])->name('product.sell');
-
-
-// Route::get('/', [ItemController::class, 'index'])->name('items.index');
 
 //商品詳細画面の表示
 Route::get('/item/{item_id}',[ItemController::class,'show'])->name('exhibition');
+
+
+// ログイン必須画面
+Route::middleware('auth')->group(function () {
+    // プロフィール設定画面の表示
+    Route::get('/mypage/profile',[AuthController::class,'profile'])->name('profile');
+
+    // プロフィールの更新
+    Route::patch('/mypage/profile',[AuthController::class,'update'])->name('update');
+
+    // 商品詳細画面でのコメント
+    Route::post('/item/{item_id}',[ItemController::class,'storeComment'])->name('store.comment');
+
+
+    // マイページの表示
+    Route::get('/mypage',[AuthController::class,'mypage'])->name('mypage');
+
+    // 出品画面表示
+    Route::get('/sell',[ItemController::class,'sell'])->name('sell');
+
+    // 出品
+    Route::post('/sell',[ItemController::class,'store'])->name('product.sell');
+
+    //購入画面の表示
+    Route::get('/purchase/{item_id}',[ItemController::class,'purchase'])->name('purchase');
+
+    // 購入
+    Route::post('/purchase/{item_id}/complete',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
+
+    // ログアウト
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+});
+
 
 // いいね・コメントの追加(商品詳細画面)
 // Route:post('/item/{item_id}',[ItemController::class,'add'])->name('exhibition');
@@ -64,11 +74,11 @@ Route::get('/item/{item_id}',[ItemController::class,'show'])->name('exhibition')
 
 //いいね機能
 // 一覧表示
-Route::get('/mylist', [ItemController::class, 'mylist'])->name('items.mylist');
-// いいね追加
-Route::post('/mylists/{item}/add', [MylistController::class, 'add'])->name('mylists.add');
-// いいね削除
-Route::delete('/mylists/{item}/remove', [MylistController::class, 'remove'])->name('mylists.remove');
+// Route::get('/mylist', [ItemController::class, 'mylist'])->name('items.mylist');
+// // いいね追加
+// Route::post('/mylists/{item}/add', [MylistController::class, 'add'])->name('mylists.add');
+// // いいね削除
+// Route::delete('/mylists/{item}/remove', [MylistController::class, 'remove'])->name('mylists.remove');
 
 
 

@@ -23,11 +23,13 @@
         <p class="">購入した商品</p>
     </div>
 
-    <div class="products-data">
-        <img class="product-img" src="" alt="">
-        <img class="product-img" src="" alt="">
-        <img class="product-img" src="" alt="">
-        <img class="product-img" src="" alt="">
+    <div class="item-list">
+    @foreach($items as $item)
+        <a class="item" href="/item/{{$item->id}}">
+            <img class="item-img" src="{{$item->img_url}}" alt="商品画像">
+            <p class="item-name">{{$item->name}}</p>
+        </a>
+        @endforeach
     </div>
 
 </div>

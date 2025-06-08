@@ -27,7 +27,7 @@
                 <p class="count">3</p>
             </div>
         </div>
-        <button class="payment__button">購入手続きへ</button>
+        <a class="purchase__button" href="/purchase/{{$item->id}}">購入手続きへ</a>
         <div class="item-description">
             <h3>商品説明</h3>
             <p class="description__content">{{$item['description']}}</p>
@@ -47,16 +47,26 @@
                 <p class="condition">{{$item->condition['selection']}}</p>
             </div>
         </div>
-        <div class="comment-area">
+        <div>
             <p class="comment__title">コメント<span>3</span></p>
+            @if(isset($comments) && $comments->count() > 0)
+            @foreach($comments as $comment)
             <div class="comment__user">
                 <img class="user-img" src="">
-                <p class="user-name">admin</p>
+                <p class="user-name">{{$comment->user->name}}</p>
             </div>
-            <p class="user-comment">こちらにコメントが入ります。</p>
-            <form class="" action="" method="">
+            <p class="user-comment">{{$comment->content}}</p>
+            @endforeach
+            @endif
+            <form class="comment__input-area" action="{{route('store.comment', ['item_id' => $item->id])}}" method="POST">
+                @csrf
                 <label class="comment__label">商品へのコメント</label>
-                <input class="comment__input" type="textarea">
+                <textarea class="comment__input" name="content">{{old('content')}}</textarea>
+                <div class="form__error-message">
+                    @error('content')
+                    {{$message}}
+                    @enderror
+                </div>
                 <button class="submit__button">コメントを送信する</button>
             </form>
         </div>

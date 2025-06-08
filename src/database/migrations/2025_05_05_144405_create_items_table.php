@@ -23,6 +23,7 @@ class CreateItemsTable extends Migration
             $table->string('price');
             $table->string('img_url')->nullable();
             $table->string('status')->default('available');
+            $table->unsignedBigInteger('buyer_id')->nullable();
             $table->timestamps();
         });
     }

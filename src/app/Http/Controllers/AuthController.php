@@ -79,9 +79,10 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    // マイページへ遷移
+    // マイページの表示
     public function mypage(){
         $user=Auth::user();
-        return view('mypage',compact('user'));
+        $items = Item::with('categories', 'condition')->get();
+        return view('mypage',compact('user','items'));
     }
 }
