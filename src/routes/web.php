@@ -63,6 +63,13 @@ Route::middleware('auth')->group(function () {
     // 購入
     Route::post('/purchase/{item_id}/complete',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
 
+    //いいね機能
+    // 一覧表示
+    Route::get('/?tab=mylist', [ItemController::class, 'mylist'])->name('items.mylist');
+
+    // // いいね追加・削除
+    Route::post('/items/{item_id}/toggle-like', [ItemController::class, 'toggleLike'])->name('items.toggleLike');
+
     // ログアウト
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 });
@@ -72,13 +79,7 @@ Route::middleware('auth')->group(function () {
 // Route:post('/item/{item_id}',[ItemController::class,'add'])->name('exhibition');
 
 
-//いいね機能
-// 一覧表示
-// Route::get('/mylist', [ItemController::class, 'mylist'])->name('items.mylist');
-// // いいね追加
-// Route::post('/mylists/{item}/add', [MylistController::class, 'add'])->name('mylists.add');
-// // いいね削除
-// Route::delete('/mylists/{item}/remove', [MylistController::class, 'remove'])->name('mylists.remove');
+
 
 
 

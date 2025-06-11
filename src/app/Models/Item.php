@@ -19,8 +19,8 @@ class Item extends Model
         return $this->belongsTo(Condition::class);
     }
 
-    public function likedUsers(){
-        return $this->belongsToMany(User::class, 'mylists')->withTimestamps();
+    public function mylists(){
+        return $this->belongsToMany(User::class);
     }
 
     public function comments(){

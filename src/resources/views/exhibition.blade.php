@@ -13,20 +13,19 @@
         <h2 class="item-name">{{$item['name']}}</h2>
         <p class="item-brand">{{$item['brand']}}</p>
         <p class="item-price">￥<span>{{number_format($item['price'])}}</span>(税込)</p>
-        <div class="interaction">
-        {{-- <form class="interaction" action="{{route('exhibition')}}" method="POST">
-            @scrf --}}
-            <div class="good">
+        <form class="interaction" action="{{route('items.toggleLike',['item_id'=>$item->id])}}" method="POST"  data-item-id="{{ $item->id }}">
+            @csrf
+            <div class="liked">
                 <button class="icon" type="submit">
-                    <img class="icon__star" src="{{asset('img/star.png')}}" alt="いいね">
+                    <img class="icon__star" src="{{asset('img/star.png')}}" alt="いいね" id="star-icon-{{ $item->id }}">
                 </button>
-                <p class="count">5</p>
+                <p class="count" id="like-count-{{ $item->id }}">{{ $item->like_count }}</p>
             </div>
             <div class="comment">
                 <img class="icon" src="{{asset('img/speech-bubble.png')}}" alt="コメント">
                 <p class="count">3</p>
             </div>
-        </div>
+        </form>
         <a class="purchase__button" href="/purchase/{{$item->id}}">購入手続きへ</a>
         <div class="item-description">
             <h3>商品説明</h3>
@@ -71,5 +70,41 @@
             </form>
         </div>
     </div>
+    {{-- いいねしたときの画面上の動き --}}
+    <script>
+    document.querySelectorAll('.interaction').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const url = this.action;
+            const token = this.querySelector('input[name="_token"]').value;
+            const itemId = this.dataset.itemId;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token,
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                const likeCountElement = document.getElementById(`like-count-${itemId}`);
+                const starIconElement = document.getElementById(`star-icon-${itemId}`);
+
+                likeCountElement.textContent = data.like_count;
+
+                if (data.liked) {
+                    starIconElement.src = '{{ asset('img/star_on.png') }}';
+                } else {
+                    starIconElement.src = '{{ asset('img/star.png') }}';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+    </script>
 </div>
 @endsection

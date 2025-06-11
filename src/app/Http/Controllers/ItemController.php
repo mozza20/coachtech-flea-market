@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Condition;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Mylist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExhibitionRequest;
@@ -90,61 +91,45 @@ class ItemController extends Controller
         return redirect('/')->with('purchase_complete', '購入が完了しました');
     }
 
+    public function toggleLike($item_id){
+        $item = Item::findOrFail($item_id);
+        $user=Auth::user();
+        // すでに「いいね」しているか確認
+        $existingLike = Mylist::where('user_id', $user->id)
+        ->where('item_id', $item->id)
+        ->first();
 
+        if ($existingLike) {
+            // すでにいいねされていたら解除
+            $existingLike->delete();
+            $item->decrement('like_count');
+            $liked = false;
+        }else{
+            // 新しい「いいね」する
+            Mylist::create([
+                'user_id' => $user->id,
+                'item_id' => $item->id,
+            ]);
+            $item->increment('like_count');
+            $liked = true;
+        }
+        //Ajax用にJSONで返す(リロードせずにいいねを反映)
+        return response()->json([
+            'liked' => $liked,
+            'like_count' => $item->like_count,
+        ]);
+    }
 
-    public function add(Request $request){
-        //いいねを追加
+    // マイリストの表示
+    public function mylist(){
+        $user=Auth::user();
+        $likedItemIds=Like::where('user_id',$user->id)->pluck('item_id');
+        $items=Item::whereIn('id',$likedItemIds)->get();
+        return view('items.mylist',compact('items'));
     }
 
 
-    public function liked(){
-        $items = Auth::user()->mylists;
-        return view('items.mylist', compact('items'));
-    }
 
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Item $item)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Item $item)
-    {
-        //
-    }
 }

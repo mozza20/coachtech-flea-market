@@ -24,6 +24,7 @@ class CreateItemsTable extends Migration
             $table->string('img_url')->nullable();
             $table->string('status')->default('available');
             $table->unsignedBigInteger('buyer_id')->nullable();
+            $table->unsignedInteger('like_count')->default(0);
             $table->timestamps();
         });
     }

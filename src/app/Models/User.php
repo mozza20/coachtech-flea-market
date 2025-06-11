@@ -31,7 +31,7 @@ class User extends Authenticatable
     }
     
     public function mylists(){
-        return $this->belongsToMany(Item::class, 'mylists')->withTimestamps();
+        return $this->belongsToMany(Item::class);
 }
 
     /**

@@ -51,7 +51,7 @@
     gap: 65px;
 }
 
-.good,
+.liked,
 .comment {
     display: grid;
     grid-template-columns: 1fr;
