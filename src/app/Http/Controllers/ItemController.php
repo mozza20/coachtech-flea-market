@@ -91,6 +91,13 @@ class ItemController extends Controller
         return redirect('/')->with('purchase_complete', '購入が完了しました');
     }
 
+    // 住所変更画面表示
+    public function addressEdit($item_id){
+        $item = Item::findOrFail($item_id);
+        $user=Auth::user();
+        return view('address',compact('item','user'));
+    }
+
     public function toggleLike($item_id){
         $item = Item::findOrFail($item_id);
         $user=Auth::user();

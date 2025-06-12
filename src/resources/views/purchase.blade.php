@@ -13,7 +13,7 @@
             <p class="product-price"><span>￥</span>{{number_format($item['price'])}}</p>
         </div>
     </div>
-    <form class="" action="{{ route('purchase.complete', ['item_id' => $item->id]) }}" method="POST">
+    <form action="{{ route('purchase.complete', ['item_id' => $item->id]) }}" method="POST">
         @csrf
         <div class="payment">
             <label class="payment__label">支払い方法</label>
@@ -30,7 +30,7 @@
         </div>
         <div class="address">
             <p class="address__label">配送先</p>
-            <a class="address-edit__link">変更する</a>
+            <a class="address-edit__link" href="{{ route('purchase.address', ['item_id' => $item->id]) }}">変更する</a>
             <div class="address__area--default">
                 <p><span>〒</span>{{$user->post_code}}</p>
                 <p>{{$user->address}}</p>
@@ -42,7 +42,7 @@
                     <td class="table__label">商品代金</td>
                     <td class="table__data"><span>￥ </span>{{number_format($item['price'])}}</td>
                 </tr>
-                <tr>
+                <tr class="payment__table--row">
                     <td class="table__label">支払い方法</td>
                     <td class="table__data" id="payment-display"></td>
                     <!-- JavaScript -->

@@ -63,6 +63,9 @@ Route::middleware('auth')->group(function () {
     // 購入
     Route::post('/purchase/{item_id}/complete',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
 
+    // 住所変更画面表示
+    Route::get('/purchase/address/{item_id}',[ItemController::class,'addressEdit'])->name('purchase.address');
+
     //いいね機能
     // 一覧表示
     Route::get('/?tab=mylist', [ItemController::class, 'mylist'])->name('items.mylist');

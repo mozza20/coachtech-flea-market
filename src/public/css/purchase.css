@@ -139,11 +139,16 @@
     text-align: center;
 }
 
+.payment__table--row {
+    height: 115px;
+}
+
 .payment__table--row:first-child {
     border-bottom: 1px solid #000000;
 }
 
 .table__label {
+    width: 200px;
     font-size: 20px;
 }
 
