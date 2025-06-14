@@ -125,6 +125,43 @@ html {
     font-size: 20px;
 }
 
+/* トップ・マイページ画面　商品表示 */
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 80px 50px;
+    width: 1013px;
+    gap: 70px;
+}
+
+.item {
+    display: flex;
+    flex-wrap: wrap;
+    width: 290px;
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: 400;
+    color: #000000;
+    position: relative;
+}
+
+.item-img {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    line-height: 281px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.item-name {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 25px;
+}
+
 /* ログイン、会員登録、プロフィール設定・編集、出品、送付先住所変更、メール認証、住所変更画面*/
 .form__button {
     display: block;

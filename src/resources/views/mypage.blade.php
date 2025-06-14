@@ -25,10 +25,10 @@
 
     <div class="item-list">
     @foreach($items as $item)
-        <a class="item" href="/item/{{$item->id}}">
+        <div class="item">
             <img class="item-img" src="{{$item->img_url}}" alt="商品画像">
             <p class="item-name">{{$item->name}}</p>
-        </a>
+        </div>
         @endforeach
     </div>
 

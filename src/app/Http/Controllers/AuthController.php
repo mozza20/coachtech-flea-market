@@ -52,7 +52,12 @@ class AuthController extends Controller
 
     // トップページの表示(ItemControllerにも同じ記述あり)
     public function index(){
-        $items = Item::with('categories', 'condition')->get();
+        $user=Auth::id();
+        // ログインユーザーの出品商品を除く
+        $items = Item::with('categories', 'condition')
+        ->where('user_id', '!=', $user)
+        ->get();
+        
         return view('top', compact('items'));
     }
 
@@ -82,7 +87,9 @@ class AuthController extends Controller
     // マイページの表示
     public function mypage(){
         $user=Auth::user();
-        $items = Item::with('categories', 'condition')->get();
+        $items = Item::with('categories', 'condition')
+        ->where('user_id',$user['id'])
+        ->get();
         return view('mypage',compact('user','items'));
     }
 }
