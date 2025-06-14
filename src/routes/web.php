@@ -64,7 +64,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/purchase/{item_id}/complete',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
 
     // 住所変更画面表示
-    Route::get('/purchase/address/{item_id}',[ItemController::class,'addressEdit'])->name('purchase.address');
+    Route::get('/purchase/address/{item_id}',[ItemController::class,'address'])->name('purchase.address');
+
+    // 住所の変更
+    Route::post('/purchase/address/{item_id}',[ItemController::class,'addressEdit'])->name('address.edit');
 
     //いいね機能
     // 一覧表示

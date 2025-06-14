@@ -92,10 +92,21 @@ class ItemController extends Controller
     }
 
     // 住所変更画面表示
-    public function addressEdit($item_id){
+    public function address($item_id){
         $item = Item::findOrFail($item_id);
         $user=Auth::user();
         return view('address',compact('item','user'));
+    }
+
+    // 住所変更
+    public function addressEdit(Request $request, $item_id,$user_id){
+        $item = Item::findOrFail($item_id);
+        $user=Auth::user();
+        $address=$request->only(['poset_code','address','building'])
+        ->where('item_id', $item->id)
+        ->where('user_id'->$user->id)
+        ->get();
+        return redirect('purchase',compact('item','user'));
     }
 
     public function toggleLike($item_id){

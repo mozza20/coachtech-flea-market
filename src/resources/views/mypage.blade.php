@@ -26,7 +26,7 @@
     <div class="item-list">
     @foreach($items as $item)
         <div class="item">
-            <img class="item-img" src="{{$item->img_url}}" alt="商品画像">
+            <img class="item-img" src="{{asset('storage/'.$item->img_url)}}" alt="商品画像">
             <p class="item-name">{{$item->name}}</p>
         </div>
         @endforeach

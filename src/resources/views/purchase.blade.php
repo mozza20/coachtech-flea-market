@@ -7,7 +7,7 @@
 @section('content')
 <div class="purchase">
     <div class="product-info">
-        <img class="product-img" src="" alt="商品画像">
+        <img class="product-img" src="{{asset('storage/'.$item->img_url)}}" alt="商品画像">
         <div class="product-info__text">
             <h2 class="product-name">{{$item['name']}}</h2>
             <p class="product-price"><span>￥</span>{{number_format($item['price'])}}</p>

@@ -23,7 +23,7 @@
             </div>
             <div class="comment">
                 <img class="icon" src="{{asset('img/speech-bubble.png')}}" alt="コメント">
-                <p class="count">3</p>
+                <p class="count">{{ $comments->count() }}</p>
             </div>
         </form>
         <a class="purchase__button" href="/purchase/{{$item->id}}">購入手続きへ</a>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div>
-            <p class="comment__title">コメント<span>3</span></p>
+            <p class="comment__title">コメント<span>{{ $comments->count() }}</span></p>
             @if(isset($comments) && $comments->count() > 0)
             @foreach($comments as $comment)
             <div class="comment__user">

@@ -27,7 +27,7 @@
         @foreach($items as $item)
          {{-- @foreach以下は1つに。自分の出品した製品は表示しない--}}
         <a class="item" href="/item/{{$item->id}}">
-            <img class="item-img" src="{{$item->img_url}}" alt="商品画像">
+            <img class="item-img" src="{{asset('storage/'.$item->img_url)}}" alt="商品画像">
             @if($item->status==='sold')
                 <p class="sold">sold</p>
             @endif
