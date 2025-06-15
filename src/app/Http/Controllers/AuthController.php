@@ -24,7 +24,7 @@ class AuthController extends Controller
         $data = $request->only(['name', 'email', 'password']);
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
-
+        
         // ログイン
         Auth::login($user);
         return redirect('/mypage/profile');
@@ -42,6 +42,12 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             //セキュリティ強化
             $request->session()->regenerate(); 
+
+            if(!Auth::user()->hasVerifiedEmail()){
+                // メール認証用のメール送信
+                $user->sendEmailVerificationNotification();
+                return redirect()->route('verification.notice');
+            }
             return redirect()->intended('/');
         }
 

@@ -13,6 +13,13 @@ services:
     build: ./docker/php
     volumes:
       - ./src:/var/www/
+    working_dir: /var/www
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
 
   mysql:
     image: mysql:8.0.26

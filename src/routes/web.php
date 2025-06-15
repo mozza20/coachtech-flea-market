@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MylistController;
 use App\Http\Controllers\AuthController;
-
-
+use App\Http\Controllers\MailTestController;
+// メール認証用
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +30,25 @@ Route::get('/login',[AuthController::class,'showLoginForm'])->middleware('guest'
 
 //ログイン処理
 Route::post('/login',[AuthController::class,'login'])->middleware(['guest'])->name('login');
+
+
+// メール認証画面
+Route::get('/email/verify',function(){
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+// メール認証リンクからのアクセス
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill(); // メール確認済み状態にする
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// メール再送信処理
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', '確認リンクを再送信しました。');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 //トップページ表示 (ログインしてなくても表示)
 Route::get('/', [AuthController::class, 'index']);
@@ -84,8 +105,8 @@ Route::middleware('auth')->group(function () {
 // いいね・コメントの追加(商品詳細画面)
 // Route:post('/item/{item_id}',[ItemController::class,'add'])->name('exhibition');
 
-
-
-
-
+// メール認証機能
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('/dashboard', [AuthController::class, 'index']);
+// });
 
