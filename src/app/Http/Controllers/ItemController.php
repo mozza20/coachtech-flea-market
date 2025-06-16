@@ -20,8 +20,14 @@ class ItemController extends Controller
         $items = Item::with('categories', 'condition')->get();
         return view('top', compact('items'));
     }
-    // user()の後ろに->mylists()、自分が出品した商品以外の表示コードを入れる
-    // ログインしたときとしてないときの表示を変える
+
+    // 表示の切り替え
+    // public function pageSwitch(Request $request){
+    //     $items = Item::with('categories', 'condition')->get();
+    //     if($request->has('mylist')){
+
+    //     }
+    // }
 
     //出品画面表示
     public function sell(){

@@ -19,10 +19,11 @@
     </script>
 @endif
 
-    <div class="toppage-list">
-        <p class="list1">おすすめ</p>
-        <p class="list2">マイリスト</p>
-    </div>
+    <form class="toppage-list" method="POST">
+        @csrf
+        <button class="recommend__button" name="recommend">おすすめ
+        <button class="mylist__button" name="mylist">マイリスト</button>
+    </form>
     <div class="item-list">
         @foreach($items as $item)
          {{-- @foreach以下は1つに。自分の出品した製品は表示しない--}}
