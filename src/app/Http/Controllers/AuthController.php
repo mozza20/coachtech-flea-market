@@ -44,6 +44,7 @@ class AuthController extends Controller
             $request->session()->regenerate(); 
 
             if(!Auth::user()->hasVerifiedEmail()){
+                $user = Auth::user();
                 // メール認証用のメール送信
                 $user->sendEmailVerificationNotification();
                 return redirect()->route('verification.notice');

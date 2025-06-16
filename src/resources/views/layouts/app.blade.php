@@ -32,10 +32,9 @@
                 </div>
                 @else
                 <div class="header-nav__buttons">
-                    <form class="login-button" action="{{route('auth.login')}}" method=GET>
-                        @csrf
+                    <a class="login-button" href="{{route('auth.login')}}">
                         <button type="submit" name="login">ログイン</button>
-                    </form>
+                    </a>
                     <a class="mypage-link" href="{{route('auth.login')}}">マイページ</a>
                     <a class="sellpage-link" href="{{route('auth.login')}}">出品</a>
                 </div>

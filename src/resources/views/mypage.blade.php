@@ -11,7 +11,7 @@
             <div class="user-img__area">
                 <img class="user-img" src="" alt="">
             </div>
-            <h2 cass="user-name">ユーザー名</h2>
+            <h2 cass="user-name">{{$user->name}}</h2>
         </div>    
         <form class="prof-edit__form" action="{{route('profile')}}" method="GET">
             <button class="prof-edit__btn">プロフィールを編集</button>
