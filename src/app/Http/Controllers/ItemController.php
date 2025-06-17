@@ -25,7 +25,7 @@ class ItemController extends Controller
     // public function pageSwitch(Request $request){
     //     $items = Item::with('categories', 'condition')->get();
     //     if($request->has('mylist')){
-
+            
     //     }
     // }
 

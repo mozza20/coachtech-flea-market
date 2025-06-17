@@ -19,8 +19,7 @@
     </script>
 @endif
 
-    <form class="toppage-list" method="POST">
-        @csrf
+    <form class="toppage-list" method="GET">
         <button class="recommend__button" name="recommend">おすすめ
         <button class="mylist__button" name="mylist">マイリスト</button>
     </form>

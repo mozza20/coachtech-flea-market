@@ -2,26 +2,47 @@
 
 @section('content')
 <div class="content">
-    <h2>メールアドレスの確認</h2>
-    <p>確認メールを送信しました。メール内のリンクをクリックしてください。</p>
-    <form method="POST" action="{{ route('verification.send') }}">
+@section('no-nav')
+@endsection
+    <p class="message">登録していただいたメールアドレスに認証メールを送付しました。<br>
+    メール認証を完了してください。</p>
+    <form class="verify-form" method="POST" action="{{ route('verification.send') }}">
         @csrf
-        <button type="submit">再送信</button>
+        <a class="mail--link" href="http://localhost:8025/">認証はこちらから</a>
+        <button class="send-again__button" ype="submit">認証メールを再送する</button>
     </form>
 </div>
 
 <style>
-    h2{
-        font-size:36px;
-    }
-    p{
+    .message{
+        margin-top:240px;
         font-size:24px;
+        font-weight:bold;
     }
-    button{
-        width:150px;
-        height:50px;
-        line-height:50%;
-        border-radius:5px;
+    .verify-form{
+        width:300px;
+        margin:100px auto;
+    }
+    .mail--link{
+        display:block;
+        width:257px;
+        height:69px;
+        margin:0 auto;
+        line-height:69px;
+        border:1px solid #000000;
+        border-radius:10px;
+        background-color:#D9D9D9;
+        text-decoration:none;
+        color:#000000;
         font-size:24px;
+        font-weight:bold;
+    }
+    .send-again__button{
+        display:block;
+        margin:70px auto;
+        border:none;
+        background-color:#ffffff;
+        color:#0073CC;
+        font-size:20px;
     }
 @endsection
