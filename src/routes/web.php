@@ -51,14 +51,14 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 
 //トップページ表示 (ログインしてなくても表示)
-Route::get('/', [AuthController::class, 'index']);
+Route::get('/', [AuthController::class, 'index'])->name('top');
 
 //商品詳細画面の表示
 Route::get('/item/{item_id}',[ItemController::class,'show'])->name('exhibition');
 
 
 // ログイン必須画面
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','verified')->group(function () {
     // プロフィール設定画面の表示
     Route::get('/mypage/profile',[AuthController::class,'profile'])->name('profile');
 
@@ -97,10 +97,12 @@ Route::middleware('auth')->group(function () {
     // // いいね追加・削除
     Route::post('/items/{item_id}/toggle-like', [ItemController::class, 'toggleLike'])->name('items.toggleLike');
 
-    // ログアウト
-    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 });
 
+// ログアウト
+Route::middleware('auth')->group(function () {
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+});
 
 // いいね・コメントの追加(商品詳細画面)
 // Route:post('/item/{item_id}',[ItemController::class,'add'])->name('exhibition');

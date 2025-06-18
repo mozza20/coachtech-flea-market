@@ -10,6 +10,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Models\User;
 use App\Models\Item;
+use App\Models\Mylist;
 
 
 class AuthController extends Controller
@@ -57,15 +58,20 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    // トップページの表示(ItemControllerにも同じ記述あり)
-    public function index(){
-        $user=Auth::id();
-        // ログインユーザーの出品商品を除く
-        $items = Item::with('categories', 'condition')
-        ->where('user_id', '!=', $user)
-        ->get();
-        
-        return view('top', compact('items'));
+    // トップページの表示(タブ切り替え)
+    public function index(Request $request){
+        $user=Auth::user();
+        if($request->tab === 'mylist' && $user){
+            $mylistId=Mylist::where('user_id', $user->id)
+            ->pluck('item_id');
+            $items=Item::whereIn('id',$mylistId)->with('categories','condition')->get();
+        }else{
+            $userId = optional($user)->id;
+            $items = Item::with('categories', 'condition')
+            ->when($userId, fn($query)=>$query->where('user_id', '!=', $userId))
+            ->get();
+        }
+        return view('top',compact('items'));
     }
 
     // プロフィール設定画面表示

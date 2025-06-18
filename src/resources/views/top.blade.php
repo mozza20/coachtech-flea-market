@@ -19,10 +19,10 @@
     </script>
 @endif
 
-    <form class="toppage-list" method="GET">
-        <button class="recommend__button" name="recommend">おすすめ
-        <button class="mylist__button" name="mylist">マイリスト</button>
-    </form>
+    <div class="toppage-list" >
+        <a class="recommend__button" href="{{ route('top') }}">おすすめ
+        <a class="mylist__button" href="{{ route('top', ['tab' => 'mylist']) }}">マイリスト</a>
+    </div>
     <div class="item-list">
         @foreach($items as $item)
          {{-- @foreach以下は1つに。自分の出品した製品は表示しない--}}

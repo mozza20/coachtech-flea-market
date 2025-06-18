@@ -15,20 +15,6 @@ use App\Http\Requests\CommentRequest;
 
 class ItemController extends Controller
 {
-    // トップページを表示(AuthControllerにも同じ記述あり)
-    public function index(){
-        $items = Item::with('categories', 'condition')->get();
-        return view('top', compact('items'));
-    }
-
-    // 表示の切り替え
-    // public function pageSwitch(Request $request){
-    //     $items = Item::with('categories', 'condition')->get();
-    //     if($request->has('mylist')){
-            
-    //     }
-    // }
-
     //出品画面表示
     public function sell(){
         $categories=Category::all();
