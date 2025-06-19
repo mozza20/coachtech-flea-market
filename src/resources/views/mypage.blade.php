@@ -19,8 +19,8 @@
     </div>
     
     <div class="mypage-list">
-        <p class="">出品した商品</p>
-        <p class="">購入した商品</p>
+        <a class="selling-items" href="{{route('mypage', ['tab'=>'sell'])}}">出品した商品</a>
+        <a class="bought-items" href="{{route('mypage', ['tab'=>'buy'])}}">購入した商品</a>
     </div>
 
     <div class="item-list">

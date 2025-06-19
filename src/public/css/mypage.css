@@ -39,11 +39,19 @@
 
 .mypage-list {
     display: flex;
+    padding-left: 80px;
     border-bottom: 2px solid #5F5F5F;
-    font-family: "Inter", sans-serif;
-    font-size: 24px;
 }
 
+.selling-items,
+.bought-items {
+    margin: auto 30px;
+    text-decoration: none;
+    color: #5F5F5F;
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
 
 .mypage-list p:first-child {
     margin-right: 50px;

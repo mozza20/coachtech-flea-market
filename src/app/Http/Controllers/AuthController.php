@@ -97,12 +97,18 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    // マイページの表示
-    public function mypage(){
+    // マイページの表示(タブ切り替え)
+    public function mypage(Request $request){
         $user=Auth::user();
-        $items = Item::with('categories', 'condition')
-        ->where('user_id',$user['id'])
-        ->get();
+
+        if($request->tab==='buy' && $user){
+            $items=Item::where('buyer_id',$user->id);
+        }else{
+            $items = Item::with('categories', 'condition')
+            ->where('user_id',$user['id'])
+            ->get();
+        }
+        
         return view('mypage',compact('user','items'));
     }
 }
