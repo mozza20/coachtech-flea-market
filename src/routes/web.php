@@ -53,6 +53,10 @@ Route::post('/email/verification-notification', function (Request $request) {
 //トップページ表示 (ログインしてなくても表示)
 Route::get('/', [AuthController::class, 'index'])->name('top');
 
+// 検索結果表示
+Route::post('/', [ItemController::class, 'search'])->name('top.search');
+
+
 //商品詳細画面の表示
 Route::get('/item/{item_id}',[ItemController::class,'show'])->name('exhibition');
 

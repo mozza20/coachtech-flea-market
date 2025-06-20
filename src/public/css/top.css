@@ -25,6 +25,11 @@
     font-weight: 700;
 }
 
+.recommend__button.active,
+.mylist__button.active {
+    color: #FF0000;
+}
+
 
 
 /* 売却済みの商品表示 */

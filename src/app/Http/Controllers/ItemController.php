@@ -130,13 +130,11 @@ class ItemController extends Controller
         ]);
     }
 
-    // マイリストの表示
-    public function mylist(){
-        $user=Auth::user();
-        $likedItemIds=Like::where('user_id',$user->id)->pluck('item_id');
-        $items=Item::whereIn('id',$likedItemIds)->get();
-        return view('items.mylist',compact('items'));
+    // 検索機能
+    public function search(Request $request){
+        $item=Item::where('name','LIKE', "%{$request->input}%")->get();
     }
+
 
 
 

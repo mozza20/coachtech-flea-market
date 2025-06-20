@@ -20,8 +20,8 @@
 @endif
 
     <div class="toppage-list" >
-        <a class="recommend__button" href="{{ route('top') }}">おすすめ
-        <a class="mylist__button" href="{{ route('top', ['tab' => 'mylist']) }}">マイリスト</a>
+        <a class="recommend__button {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}" href="{{ route('top') }}">おすすめ
+        <a class="mylist__button {{ request('tab', 'recommend') === 'mylist' ? 'active' : '' }}" href="{{ route('top', ['tab' => 'mylist']) }}">マイリスト</a>
     </div>
     <div class="item-list">
         @foreach($items as $item)

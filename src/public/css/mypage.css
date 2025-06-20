@@ -53,6 +53,11 @@
     font-weight: 700;
 }
 
+.selling-items.active,
+.bought-items.active {
+    color: #FF0000;
+}
+
 .mypage-list p:first-child {
     margin-right: 50px;
     margin-left: 100px;
