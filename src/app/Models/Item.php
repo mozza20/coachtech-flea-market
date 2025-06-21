@@ -26,4 +26,11 @@ class Item extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function scopeKeywordSearch($query, $keyword){
+        if(!empty($keyword)){
+            $query->where('name','LIKE', '%'.$keyword.'%');
+        }
+        return $query;
+    }
 }

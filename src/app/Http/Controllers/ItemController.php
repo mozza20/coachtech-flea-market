@@ -53,7 +53,14 @@ class ItemController extends Controller
     public function show($item_id){
         $item=Item::with('categories','condition')->findOrFail($item_id);
         $comments =$item->comments()->with('user')->get();
-        return view('exhibition',compact('item','comments'));
+
+        // いいねしているかどうか判断
+        $user = Auth::user();
+        $likedItemIds = $user
+        ? Mylist::where('user_id', $user->id)->pluck('item_id')->toArray()
+        : [];
+
+        return view('exhibition',compact('item','comments','likedItemIds'));
     }
     // コメントの投稿
     public function storeComment(CommentRequest $request, $item_id){
@@ -132,7 +139,9 @@ class ItemController extends Controller
 
     // 検索機能
     public function search(Request $request){
-        $item=Item::where('name','LIKE', "%{$request->input}%")->get();
+        $items=Item::with('categories','condition')
+        ->KeywordSearch($request->keyword)->get();
+        return view('top',compact('items'));
     }
 
 

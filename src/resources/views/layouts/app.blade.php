@@ -19,7 +19,11 @@
                 <img src="{{asset('img/logo.svg')}}" alt="COACHTECH">
             </a>
             @if(!View::hasSection('no-nav'))
-            <input class="header-nav__search" type="text" placeholder="なにをお探しですか？">
+            <form class="header-nav__search" action="{{route('top.search')}}" method="POST">
+                @csrf
+                <input class="header-nav__search--input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{old('keyword')}}">
+                <button type="submit" style="display:none"></button>
+            </form>
                 @if(Auth::check())
                 <div class="header-nav__buttons">
                     <form class="logout-button" action="{{route('logout')}}" method=POST>

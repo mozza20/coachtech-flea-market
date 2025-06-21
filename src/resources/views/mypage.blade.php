@@ -19,8 +19,8 @@
     </div>
     
     <div class="mypage-list">
-        <a class="selling-items {{ request('tab') === 'sell' ? 'active' : '' }}" href="{{route('mypage', ['tab'=>'sell'])}}">出品した商品</a>
-        <a class="bought-items {{ request('tab') === 'buy' ? 'active' : '' }}" href="{{route('mypage', ['tab'=>'buy'])}}">購入した商品</a>
+        <a class="selling-items {{ request('tab','sell') === 'sell' ? 'active' : '' }}" href="{{route('mypage', ['tab'=>'sell'])}}">出品した商品</a>
+        <a class="bought-items {{ request('tab','sell') === 'buy' ? 'active' : '' }}" href="{{route('mypage', ['tab'=>'buy'])}}">購入した商品</a>
     </div>
 
     <div class="item-list">

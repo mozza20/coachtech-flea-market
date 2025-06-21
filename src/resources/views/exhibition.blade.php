@@ -7,7 +7,7 @@
 @section('content')
 <div class="exhibition">
     <div class="img-area">
-        <img class="item-img" src="" alt="商品画像">
+        <img class="item-img" src="{{asset('storage/'.$item->img_url)}}" alt="商品画像">
     </div>
     <div class="detail-area">
         <h2 class="item-name">{{$item['name']}}</h2>
@@ -17,7 +17,11 @@
             @csrf
             <div class="liked">
                 <button class="icon" type="submit">
-                    <img class="icon__star" src="{{asset('img/star.png')}}" alt="いいね" id="star-icon-{{ $item->id }}">
+                @php
+                    $liked = in_array($item->id, $likedItemIds ?? []);
+                    $icon = $liked ? asset('img/star_on.png') : asset('img/star.png');
+                @endphp
+                    <img class="icon__star" src="{{$icon}}" alt="いいね" id="star-icon-{{ $item->id }}">
                 </button>
                 <p class="count" id="like-count-{{ $item->id }}">{{ $item->like_count }}</p>
             </div>

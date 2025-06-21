@@ -25,7 +25,9 @@ class AuthController extends Controller
         $data = $request->only(['name', 'email', 'password']);
         $data['password'] = Hash::make($data['password']);
         $user = User::create($data);
-        
+        // メール認証用のメール送信
+        $user->sendEmailVerificationNotification();
+
         // ログイン
         Auth::login($user);
         return redirect('/mypage/profile');
@@ -61,16 +63,21 @@ class AuthController extends Controller
     // トップページの表示(タブ切り替え)
     public function index(Request $request){
         $user=Auth::user();
-        if($request->tab === 'mylist' && $user){
-            $mylistId=Mylist::where('user_id', $user->id)
-            ->pluck('item_id');
-            $items=Item::whereIn('id',$mylistId)->with('categories','condition')->get();
+        if($request->tab === 'mylist'){
+            if($user){
+                $mylistId=Mylist::where('user_id', $user->id)
+                ->pluck('item_id');
+                $items=Item::whereIn('id',$mylistId)->with('categories','condition')->get();
+            }else{
+                $items=collect();
+            }
         }else{
             $userId = optional($user)->id;
             $items = Item::with('categories', 'condition')
             ->when($userId, fn($query)=>$query->where('user_id', '!=', $userId))
             ->get();
         }
+           
         return view('top',compact('items'));
     }
 
