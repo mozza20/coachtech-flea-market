@@ -9,7 +9,7 @@ class Item extends Model
 {
     use HasFactory;
 
-    protected $fillable=['name','category_id','condition_id','brand','description','price','img_url','user_id','comment_id','status','buyer_id'];
+    protected $fillable=['name','category_id','condition_id','brand','description','price','img_url','user_id','comment_id','status','buyer_id', 'address_id'];
 
     public function categories() {
         return $this->belongsToMany(Category::class);
@@ -25,6 +25,10 @@ class Item extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function address(){
+        return $this->hasOne(Address::class);
     }
 
     public function scopeKeywordSearch($query, $keyword){

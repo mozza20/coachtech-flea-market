@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Address;
 use App\Models\Condition;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Item;
 use App\Models\Mylist;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
 use App\Http\Requests\PurchaseRequest;
-use App\Http\Requests\CommentRequest;
 
 class ItemController extends Controller
 {
@@ -77,7 +80,13 @@ class ItemController extends Controller
     public function purchase($item_id){
         $item=Item::with('categories','condition')->findOrFail($item_id);
         $user=Auth::user();
-        return view('purchase',compact('item','user'));
+
+        $address = Address::where('user_id', $user->id)
+        ->where('item_id', $item->id)
+        ->latest() // 複数ある場合、最新のもの
+        ->first();
+
+        return view('purchase',compact('item','user','address'));
     }
 
     // 購入
@@ -98,14 +107,20 @@ class ItemController extends Controller
     }
 
     // 住所変更
-    public function addressEdit(Request $request, $item_id,$user_id){
+    public function addressEdit(AddressRequest $request,$item_id){
+
         $item = Item::findOrFail($item_id);
         $user=Auth::user();
-        $address=$request->only(['poset_code','address','building'])
-        ->where('item_id', $item->id)
-        ->where('user_id'->$user->id)
-        ->get();
-        return redirect('purchase',compact('item','user'));
+
+        $address=Address::create([
+            'user_id'=>$user->id,
+            'item_id'=>$item->id,
+            'post_code'=>$request->input('post_code'),
+            'address'=>$request->input('address'),
+            'building'=>$request->input('building'),
+        ]);
+
+        return redirect()->route('purchase',['item_id'=>$item->id]);
     }
 
     public function toggleLike($item_id){

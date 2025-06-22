@@ -19,18 +19,38 @@
         <div class="form-area">
             <label class="form__label">ユーザー名</label>
             <input class="form__input" type="text" name="name" value="{{$user->name}}">
+            <p class="form__error-message">
+                @error('name')
+                {{ $message }} 
+                @enderror
+            </p>
         </div>
         <div class="form-area">
             <label class="form__label">郵便番号</label>
             <input class="form__input" type="text" name="post_code" value="{{$user->post_code}}">
+            <p class="form__error-message">
+                @error('post_code')
+                {{ $message }} 
+                @enderror
+            </p>
         </div>
         <div class="form-area">
             <label class="form__label">住所</label>
             <input class="form__input" type="text" name="address" value="{{$user->address}}">
+            <p class="form__error-message">
+                @error('address')
+                {{ $message }} 
+                @enderror
+            </p>
         </div>
         <div class="form-area">
             <label class="form__label">建物名</label>
             <input class="form__input" type="text" name="building" value="{{$user->building}}">
+            <p class="form__error-message">
+                @error('building')
+                {{ $message }} 
+                @enderror
+            </p>
         </div>
         <button class="form__button">更新する</button>
     </form>

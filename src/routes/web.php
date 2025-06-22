@@ -94,6 +94,7 @@ Route::middleware('auth','verified')->group(function () {
     // 住所の変更
     Route::post('/purchase/address/{item_id}',[ItemController::class,'addressEdit'])->name('address.edit');
 
+
     //いいね機能
     // 一覧表示
     Route::get('/?tab=mylist', [ItemController::class, 'mylist'])->name('items.mylist');
