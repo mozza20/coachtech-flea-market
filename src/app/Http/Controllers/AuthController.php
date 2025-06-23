@@ -94,7 +94,7 @@ class AuthController extends Controller
         return redirect('/');
     }
 
-    //ログアウト(とりあえずログイン画面へ遷移させる)
+    //ログアウト
     public function logout(Request $request){
         Auth::logout();
         // セッションの全データ削除
@@ -108,8 +108,14 @@ class AuthController extends Controller
     public function mypage(Request $request){
         $user=Auth::user();
 
-        if($request->tab==='buy' && $user){
-            $items=Item::where('buyer_id',$user->id);
+        if($request->tab==='buy'){
+            if($user){
+                $purchaseId=Item::where('buyer_id', $user->id)
+                ->pluck('id');
+                $items=Item::whereIn('id',$purchaseId)->with('categories','condition')->get();
+            }else{
+                $items=collect();
+            }
         }else{
             $items = Item::with('categories', 'condition')
             ->where('user_id',$user['id'])

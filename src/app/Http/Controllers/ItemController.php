@@ -118,7 +118,7 @@ class ItemController extends Controller
             'post_code'=>$request->input('post_code'),
             'address'=>$request->input('address'),
             'building'=>$request->input('building'),
-        ]);
+        ]); 
 
         return redirect()->route('purchase',['item_id'=>$item->id]);
     }
