@@ -10,9 +10,10 @@
     <form class="product-form" action="{{route('product.sell')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-area">
-            <label class="form__label">商品画像</label>
+            <p class="form__label">商品画像</p>
             <div class="product-img__area">
-                <input class="product-img" type="file" name="img_url" accept="image/*">
+                <label class="product-img" for="upload">画像を選択する</label>
+                <input class="hidden" type="file" name="img_url" id="upload" accept="image/*">        
             </div>
             <div class="form__error-message">
                 @error('img_url')

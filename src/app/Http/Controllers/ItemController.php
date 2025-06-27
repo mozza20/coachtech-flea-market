@@ -96,7 +96,8 @@ class ItemController extends Controller
         $item->status='sold';
         $item->buyer_id=Auth::id();
         $item->save();
-        return redirect('/')->with('purchase_complete', '購入が完了しました');
+
+        return redirect('/');
     }
 
     // 住所変更画面表示
@@ -119,7 +120,7 @@ class ItemController extends Controller
             'address'=>$request->input('address'),
             'building'=>$request->input('building'),
         ]); 
-
+  
         return redirect()->route('purchase',['item_id'=>$item->id]);
     }
 

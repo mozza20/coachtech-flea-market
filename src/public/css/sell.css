@@ -4,8 +4,22 @@
     align-items: center;
     width: 680px;
     height: 150px;
-    border: 1px solid #5F5F5F;
+    border: 1px dotted #5F5F5F;
     border-radius: 4px;
+}
+
+.hidden {
+    display: none;
+}
+
+.product-img {
+    padding: 5px 30px;
+    border: 2px solid #FF5655;
+    border-radius: 10px;
+    color: #FF5655;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .product-info__area {

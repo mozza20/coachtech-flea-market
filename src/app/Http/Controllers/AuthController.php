@@ -103,6 +103,13 @@ class AuthController extends Controller
     public function update(ProfileRequest $request){
         $user=Auth::user();
         $user->update($request->all());
+
+        if ($request->hasFile('prof_img')){
+            $path=$request->file('prof_img')->store('profiles', 'public');
+            $user['prof_img']=$path;
+            $user->save();
+        }
+    
         return redirect('/');
     }
 

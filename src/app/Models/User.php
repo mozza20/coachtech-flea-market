@@ -23,7 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'post_code',
         'address',
-        'building'
+        'building',
+        'prof_img',
     ];
 
     public function comments(){

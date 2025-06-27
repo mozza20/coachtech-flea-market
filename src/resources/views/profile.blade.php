@@ -12,9 +12,10 @@
         @csrf
         <div class="prof-img__area">
             <div class="user-img__area">
-                <img class="user-img" src="" alt="">
+                <img class="user-img" src="{{asset('storage/'.$user->prof_img)}}" alt="">
             </div>
-            <button class="user-img--edit">画像を選択する</button>
+            <label class="user-img--edit" for="upload">画像を選択する</label>
+            <input class="hidden" type="file" name="prof_img" id="upload" accept="image/*">
         </div>
         <div class="form-area">
             <label class="form__label">ユーザー名</label>

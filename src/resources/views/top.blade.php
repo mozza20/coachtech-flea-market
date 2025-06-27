@@ -7,7 +7,7 @@
 @section('content')
 <div class="top">
 {{-- 購入完了時のメッセージ --}}
-@if (session('purchase_complete'))
+{{-- @if (session('purchase_complete'))
     <div id="purchase-complete-message" style="background-color: #d4edda; padding: 10px; margin: 10px 0;">
         {{ session('purchase_complete') }}
     </div>
@@ -17,7 +17,7 @@
             window.location.href = '/';
         }, 3000);
     </script>
-@endif
+@endif --}}
 
     <div class="toppage-list" >
         <a class="recommend__button {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}" href="{{ route('top', ['tab' => 'recommend', 'keyword'=>request('keyword')]) }}">おすすめ
