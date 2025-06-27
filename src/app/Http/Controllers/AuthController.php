@@ -63,22 +63,34 @@ class AuthController extends Controller
     // トップページの表示(タブ切り替え)
     public function index(Request $request){
         $user=Auth::user();
-        if($request->tab === 'mylist'){
+        // 検索キーワードを反映
+        $keyword = $request->keyword;
+        $tab = $request->tab;
+
+        if($tab === 'mylist'){
             if($user){
-                $mylistId=Mylist::where('user_id', $user->id)
+                $mylistIds=Mylist::where('user_id', $user->id)
                 ->pluck('item_id');
-                $items=Item::whereIn('id',$mylistId)->with('categories','condition')->get();
+
+                $items=Item::whereIn('id',$mylistIds)
+                ->when($keyword, function ($query, $keyword) {
+                    $query->where('name', 'like', '%' . $keyword . '%');
+                })->with('categories','condition')->get();
             }else{
-                $items=collect();
+                $items=collect(); //未ログインの時は空
             }
         }else{
             $userId = optional($user)->id;
+
             $items = Item::with('categories', 'condition')
             ->when($userId, fn($query)=>$query->where('user_id', '!=', $userId))
+            ->when($keyword, function ($query, $keyword) {
+                $query->where('name', 'like', '%' . $keyword . '%');
+            })
             ->get();
         }
            
-        return view('top',compact('items'));
+        return view('top',compact('items', 'tab'));
     }
 
     // プロフィール設定画面表示

@@ -60,10 +60,10 @@
     left: 0;
     display: grid;
     grid-template-columns: 670px 150px;
-    grid-template-rows: 80px 120px;
-    margin: 30px 50px 0 80px;
+    grid-template-rows: 80px 140px;
+    margin: 30px 50px 30px 80px;
     width: 805px;
-    height: 200px;
+    height: 240px;
     border-bottom: 1px solid #000000;
 }
 
@@ -99,18 +99,18 @@
     font-size: 20px;
 }
 
-.address__area--default {
+.address__area {
     grid-row: 2/3;
     margin: 0 0 0 120px;
     font-size: 20px;
     font-weight: 600;
 }
 
-.address__area--default p {
+.address__area p {
     margin: 0 0 10px 0;
 }
 
-.address__area--default p span {
+.address__area p span {
     margin: 0 5px 0 0;
 }
 

@@ -31,7 +31,7 @@
         <div class="address">
             <p class="address__label">配送先</p>
             <a class="address-edit__link" href="{{ route('purchase.address', ['item_id' => $item->id]) }}">変更する</a>
-            <div class="address__area--default">
+            <div class="address__area">
                 @if($address)
                     <p><span>〒</span>{{$address->post_code}}</p>
                     <p>{{$address->address}}</p>

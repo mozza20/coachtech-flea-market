@@ -51,7 +51,7 @@
             </div>
         </div>
         <div>
-            <p class="comment__title">コメント<span>{{ $comments->count() }}</span></p>
+            <p class="comment__title">コメント( <span>{{ $comments->count() }}</span> )</p>
             @if(isset($comments) && $comments->count() > 0)
             @foreach($comments as $comment)
             <div class="comment__user">

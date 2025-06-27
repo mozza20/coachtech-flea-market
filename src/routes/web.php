@@ -54,7 +54,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 Route::get('/', [AuthController::class, 'index'])->name('top');
 
 // 検索結果表示
-Route::post('/', [ItemController::class, 'search'])->name('top.search');
+// Route::get('/', [ItemController::class, 'search'])->name('top.search');
 
 
 //商品詳細画面の表示

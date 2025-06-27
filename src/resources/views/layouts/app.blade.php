@@ -19,9 +19,9 @@
                 <img src="{{asset('img/logo.svg')}}" alt="COACHTECH">
             </a>
             @if(!View::hasSection('no-nav'))
-            <form class="header-nav__search" action="{{route('top.search')}}" method="POST">
-                @csrf
-                <input class="header-nav__search--input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{old('keyword')}}">
+            <form class="header-nav__search" action="{{route('top')}}" method="GET">
+                <input class="header-nav__search--input" type="text" name="keyword" placeholder="なにをお探しですか？" value="{{request('keyword')}}">
+                <input type="hidden" name="tab" value="{{request('tab')}}">
                 <button type="submit" style="display:none"></button>
             </form>
                 @if(Auth::check())

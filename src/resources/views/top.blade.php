@@ -20,12 +20,11 @@
 @endif
 
     <div class="toppage-list" >
-        <a class="recommend__button {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}" href="{{ route('top') }}">おすすめ
-        <a class="mylist__button {{ request('tab', 'recommend') === 'mylist' ? 'active' : '' }}" href="{{ route('top', ['tab' => 'mylist']) }}">マイリスト</a>
+        <a class="recommend__button {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}" href="{{ route('top', ['tab' => 'recommend', 'keyword'=>request('keyword')]) }}">おすすめ
+        <a class="mylist__button {{ request('tab', 'recommend') === 'mylist' ? 'active' : '' }}" href="{{ route('top', ['tab' => 'mylist', 'keyword'=>request('keyword')]) }}">マイリスト</a>
     </div>
     <div class="item-list">
         @foreach($items as $item)
-         {{-- @foreach以下は1つに。自分の出品した製品は表示しない--}}
         <a class="item" href="/item/{{$item->id}}">
             <img class="item-img" src="{{asset('storage/'.$item->img_url)}}" alt="商品画像">
             @if($item->status==='sold')
