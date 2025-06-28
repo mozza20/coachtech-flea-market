@@ -86,25 +86,34 @@ class ItemController extends Controller
         ->latest() // 複数ある場合、最新のもの
         ->first();
 
+        if (session()->has('payment')) {
+            session()->put('payment', session('payment'));
+        }
+
         return view('purchase',compact('item','user','address'));
     }
 
-    // 購入
-    public function purchaseComplete(PurchaseRequest $request,$item_id){
-        // 該当の商品を取得
-        $item = Item::findOrFail($item_id);
-        $item->status='sold';
-        $item->buyer_id=Auth::id();
-        $item->save();
+    // // 購入
+    // public function purchaseComplete(PurchaseRequest $request,$item_id){
+    //     // 該当の商品を取得
+    //     $item = Item::findOrFail($item_id);
+    //     $item->status='sold';
+    //     $item->buyer_id=Auth::id();
+    //     $item->save();
 
-        return redirect('/');
-    }
+    //     return redirect('/');
+    // }
 
     // 住所変更画面表示
     public function address($item_id){
         $item = Item::findOrFail($item_id);
         $user=Auth::user();
-        return view('address',compact('item','user'));
+
+        // クエリパラメータから支払方法を受け取る
+        $payment = request()->query('payment', session('payment'));
+        session(['payment' => $payment]);
+
+        return view('address',compact('item','user','payment'));
     }
 
     // 住所変更
@@ -121,7 +130,9 @@ class ItemController extends Controller
             'building'=>$request->input('building'),
         ]); 
   
-        return redirect()->route('purchase',['item_id'=>$item->id]);
+        $payment = session('payment');
+
+        return redirect()->route('purchase',['item_id'=>$item->id])->withInput(['payment' => $payment]);
     }
 
     public function toggleLike($item_id){

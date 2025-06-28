@@ -6,6 +6,10 @@
 
 @section('content')
 <div class="purchase">
+    {{-- 購入キャンセルのとき --}}
+@if(isset($message))
+    <p class="form__error-message">{{ $message }}</p>
+@endif
     <div class="product-info">
         <img class="product-img" src="{{asset('storage/'.$item->img_url)}}" alt="商品画像">
         <div class="product-info__text">
@@ -13,14 +17,16 @@
             <p class="product-price"><span>￥</span>{{number_format($item['price'])}}</p>
         </div>
     </div>
-    <form action="{{ route('purchase.complete', ['item_id' => $item->id]) }}" method="POST">
-        @csrf
+    <form action="{{ route('checkout', ['item_id' => $item->id]) }}" method="POST">
+        @csrf --
+
         <div class="payment">
+            <input type="hidden" name="item_id" value="{{ $item->id }}">
             <label class="payment__label">支払い方法</label>
             <select class="payment__method" type="text" name="payment" id="payment" onchange="updatePaymentDisplay()">
-                <option value="" selected hidden>選択してください</option>
-                <option value="コンビニ払い">コンビニ払い</option>
-                <option value="カード払い">カード払い</option>
+                <option value="" selected hidden {{ old('payment') ? '' : 'selected' }}>選択してください</option>
+                <option value="コンビニ払い"  {{ old('payment') == 'コンビニ払い' ? 'selected' : '' }}>コンビニ払い</option>
+                <option value="カード払い" {{ old('payment') == 'カード払い' ? 'selected' : '' }}>カード払い</option>
             </select>
             <div class="form__error-message">
                 @error('payment')
@@ -41,7 +47,13 @@
                     <p>{{$user->address}}</p>
                     <p>{{$user->building}}</p>
                 @endif
+                <div class="form__error-message">
+                    @error('address')
+                    {{$message}}
+                    @enderror
+                </div>
             </div>
+            
         </div>
         <div class="sidebar">
             <table class="payment__table">

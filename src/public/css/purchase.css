@@ -102,21 +102,25 @@
 .address__area {
     grid-row: 2/3;
     margin: 0 0 0 120px;
-    font-size: 20px;
-    font-weight: 600;
 }
 
 .address__area p {
     margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .address__area p span {
     margin: 0 5px 0 0;
 }
 
-/* エラーメッセージ位置修正 */
-.form__error-message {
+/* エラーメッセージ */
+.payment .form__error-message {
     margin: 0 0 0 120px;
+}
+
+.address .form__error-message {
+    font-weight: 400;
 }
 
 /* 支払方法 */

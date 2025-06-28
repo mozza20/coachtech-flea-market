@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MylistController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MailTestController;
-// メール認証用
+use App\Http\Controllers\MailTestController; // メール認証用
+use App\Http\Controllers\PaymentController; //stripe
+
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
@@ -69,7 +70,6 @@ Route::middleware('auth','verified')->group(function () {
     // 商品詳細画面でのコメント
     Route::post('/item/{item_id}',[ItemController::class,'storeComment'])->name('store.comment');
 
-
     // マイページの表示
     Route::get('/mypage',[AuthController::class,'mypage'])->name('mypage');
 
@@ -82,8 +82,8 @@ Route::middleware('auth','verified')->group(function () {
     //購入画面の表示
     Route::get('/purchase/{item_id}',[ItemController::class,'purchase'])->name('purchase');
 
-    // 購入
-    Route::post('/purchase/{item_id}/complete',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
+    // // 購入
+    // Route::post('/purchase/{item_id}/complete',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
 
     // 住所変更画面表示
     Route::get('/purchase/address/{item_id}',[ItemController::class,'address'])->name('purchase.address');
@@ -99,18 +99,15 @@ Route::middleware('auth','verified')->group(function () {
     // // いいね追加・削除
     Route::post('/items/{item_id}/toggle-like', [ItemController::class, 'toggleLike'])->name('items.toggleLike');
 
+    
+
 });
+// stripeでの支払い
+Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+Route::get('/checkout/success', [PaymentController::class, 'success'])->name('checkout.success');
+Route::get('/checkout/cancel/{item_id}', [PaymentController::class, 'cancel'])->name('checkout.cancel');
 
 // ログアウト
 Route::middleware('auth')->group(function () {
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 });
-
-// いいね・コメントの追加(商品詳細画面)
-// Route:post('/item/{item_id}',[ItemController::class,'add'])->name('exhibition');
-
-// メール認証機能
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/dashboard', [AuthController::class, 'index']);
-// });
-

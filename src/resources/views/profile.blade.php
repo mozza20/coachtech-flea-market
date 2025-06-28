@@ -16,6 +16,11 @@
             </div>
             <label class="user-img--edit" for="upload">画像を選択する</label>
             <input class="hidden" type="file" name="prof_img" id="upload" accept="image/*">
+            <p class="form__error-message">
+                @error('prof_img')
+                {{ $message }} 
+                @enderror
+            </p>
         </div>
         <div class="form-area">
             <label class="form__label">ユーザー名</label>
