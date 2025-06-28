@@ -12,14 +12,18 @@
     margin-right: 200px;
 }
 
+.user-img,
 .user-img__area {
     display: inline-block;
     width: 150px;
     height: 150px;
     margin-right: 50px;
-    background-color: #D9D9D9;
     border-radius: 75px;
     text-align: center;
+}
+
+.user-img__area {
+    background-color: #D9D9D9;
 }
 
 .user-name {

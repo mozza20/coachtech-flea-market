@@ -9,7 +9,7 @@
     <div class="user-info__area">
         <div class="user-info">
             <div class="user-img__area">
-                <img class="user-img" src="" alt="">
+                <img class="user-img" src="{{asset('storage/'.$user->prof_img)}}" alt="">
             </div>
             <h2 cass="user-name">{{$user->name}}</h2>
         </div>    

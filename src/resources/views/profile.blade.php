@@ -7,12 +7,12 @@
 @section('content')
 <div class="content">
     <h2 class="content__title">プロフィール設定</h2>
-    <form class="prof-edit__form" action="{{route('update')}}" method="POST">
+    <form class="prof-edit__form" action="{{route('update')}}" method="POST" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
         <div class="prof-img__area">
             <div class="user-img__area">
-                <img class="user-img" src="{{asset('storage/'.$user->prof_img)}}" alt="">
+                <img class="user-img" id="preview" src="{{asset('storage/'.$user->prof_img)}}" alt="">
             </div>
             <label class="user-img--edit" for="upload">画像を選択する</label>
             <input class="hidden" type="file" name="prof_img" id="upload" accept="image/*">
@@ -56,4 +56,19 @@
         <button class="form__button">更新する</button>
     </form>
 </div>
+
+<!-- 画像のプレビュー表示 -->
+<script>
+document.getElementById('upload').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById('preview').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+});
+</script>
+
 @endsection
