@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
-use App\Http\Requests\PurchaseRequest;
+// use App\Http\Requests\PurchaseRequest;
 
 class ItemController extends Controller
 {
@@ -87,8 +87,10 @@ class ItemController extends Controller
         ->first();
 
         if (session()->has('payment')) {
-            session()->put('payment', session('payment'));
+            session()->flash('payment', session('payment'));
         }
+        logger()->debug('session payment', ['value' => session('payment')]);
+logger()->debug('old payment', ['value' => old('payment')]);
 
         return view('purchase',compact('item','user','address'));
     }
@@ -113,6 +115,7 @@ class ItemController extends Controller
         $payment = request()->query('payment', session('payment'));
         session(['payment' => $payment]);
 
+    
         return view('address',compact('item','user','payment'));
     }
 
@@ -131,8 +134,9 @@ class ItemController extends Controller
         ]); 
   
         $payment = session('payment');
+        session()->flash('payment', $payment);
 
-        return redirect()->route('purchase',['item_id'=>$item->id])->withInput(['payment' => $payment]);
+        return redirect()->route('purchase',['item_id'=>$item->id]);
     }
 
     public function toggleLike($item_id){
@@ -170,10 +174,5 @@ class ItemController extends Controller
         ->KeywordSearch($request->keyword)->get();
         return view('top',compact('items'));
     }
-
-
-
-
-
 
 }

@@ -1,6 +1,8 @@
 .purchase {
     position: relative;
     font-family: "Inter", sans-serif;
+    margin-top: 100px;
+    max-width: 1540px;
 }
 
 .product-info {
@@ -95,6 +97,7 @@
     grid-column: 2/3;
     grid-row: 1/2;
     text-decoration: none;
+    padding-top: 20px;
     color: #0073CC;
     font-size: 20px;
 }
@@ -129,10 +132,6 @@
     top: 0;
     left: 935px;
     width: 500px;
-}
-
-.sidebar-form {
-    width: 100%;
 }
 
 .payment__table {
@@ -181,19 +180,23 @@
 /* レスポンシブデザイン */
 @media screen and (max-width: 850px) {
     .purchase {
-        display: inline-block;
-        margin: 70px auto;
-        width: 100%;
+        position: static;
+        max-width: 850px;
+        margin: 0 auto;
     }
 
     .product-info,
     .payment,
     .address,
     .sidebar {
-        display: flex;
+        position: static;
         margin: 30px auto;
         padding-bottom: 30px;
         width: 700px;
+    }
+
+    .product-info {
+        height: 280px;
     }
 
     .product-info,
@@ -207,18 +210,20 @@
     }
 
     .payment__method {
-        margin: 50px 0 0 0;
+        margin: 50px 0 0 120px;
         height: 31px;
     }
 
-    .address-edit__link {
-        width: 400px;
-        padding-right: 50px;
-        text-align: right;
-        line-height: 70px;
+    .address {
+        grid-template-columns: 500px 100px;
+        grid-template-rows: 80px 140px;
     }
 
-    .sidebar-form {
-        margin: 40px auto;
+    .address-edit__link {
+        text-align: right;
+    }
+
+    .sidebar {
+        margin: 60px auto;
     }
 }

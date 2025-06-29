@@ -11,7 +11,7 @@ use App\Http\Requests\PurchaseRequest;
 
 class PaymentController extends Controller
 {
-    public function checkout(Request $request)
+    public function checkout(PurchaseRequest $request)
     {
         $item_id = $request->input('item_id');
         $item=Item::findOrFail($item_id);
@@ -40,11 +40,6 @@ class PaymentController extends Controller
     
         return redirect($session->url);
     }
-    
-    // public function success()
-    // {
-    //     return view('payment.success'); // 支払い完了画面
-    // }
     
     public function cancel($item_id)
     {
