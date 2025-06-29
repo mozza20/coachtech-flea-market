@@ -20,7 +20,6 @@ class CreateAddressesTable extends Migration
             $table->string('post_code');
             $table->string('address');
             $table->string('building');
-            $table->timestamps();
         });
     }
 

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\MylistController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MailTestController; // メール認証用
 use App\Http\Controllers\PaymentController; //stripe
@@ -102,9 +101,6 @@ Route::middleware('auth','verified')->group(function () {
 
     // // いいね追加・削除
     Route::post('/items/{item_id}/toggle-like', [ItemController::class, 'toggleLike'])->name('items.toggleLike');
-
-    
-
 });
 
 
