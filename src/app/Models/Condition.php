@@ -10,4 +10,8 @@ class Condition extends Model
     use HasFactory;
 
     protected $guarded=['selection'];
+
+    public function items(){
+        return $this->hasMany(Item::class);
+    }
 }
