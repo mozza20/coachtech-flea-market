@@ -40,7 +40,7 @@ class PurchaseRequest extends FormRequest
     public function withValidator($validator){
         $validator->after(function ($validator) {
             $user = Auth::user();
-
+      
             $address = \App\Models\Address::where('user_id', $user->id)
             ->where('item_id', request()->route('item_id'))
             ->latest()
