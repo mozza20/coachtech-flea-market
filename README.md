@@ -14,12 +14,12 @@ Dockerビルド
 3. 「.env.example」ファイルを 「.env」ファイルに命名を変更。または、新しく.envファイルを作成  
 4. .envに以下の環境変数を追加  
 
-``DB_CONNECTION=mysql``  
-``DB_HOST=mysql``  
-``DB_PORT=3306``  
-``DB_DATABASE=laravel_db``  
-``DB_USERNAME=laravel_user``  
-``DB_PASSWORD=laravel_pass``  
+``DB_CONNECTION=mysql  
+DB_HOST=mysql  
+DB_PORT=3306  
+DB_DATABASE=laravel_db  
+DB_USERNAME=laravel_user  
+DB_PASSWORD=laravel_pass``  
 
 5. アプリケーションキーの作成
 
@@ -35,10 +35,10 @@ Dockerビルド
 
 8. 画像ファイルのサイズを変更
 
-nginx.conf 
+**nginx.conf**  
 ``client_max_body_size 20M;``
 
-php.ini 
+**php.ini**  
 ``upload_max_filesize = 20M``
 ``post_max_size = 20M``
 
