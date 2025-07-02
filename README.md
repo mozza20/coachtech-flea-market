@@ -2,7 +2,7 @@
 
 ## 環境構築
 Dockerビルド
-1. [git clone git@github.com:estra-inc/coachtech-flea-market.git]  
+1. `git clone git@github.com:estra-inc/coachtech-flea-market.git`  
 2. DockerDesktopアプリを立ち上げる  
 3. `docker-compose up -d --build`  
 
@@ -25,20 +25,28 @@ DB_PASSWORD=laravel_pass
 
 5. アプリケーションキーの作成
 
-`php artisan key:generate`
+```
+php artisan key:generate
+```
 
 6. マイグレーションの実行
 
-`php artisan migrate`
+```
+php artisan migrate
+```
 
 7. シーディングの実行、ダミーデータの作成
 
-`php artisan db:seed`
+```
+php artisan db:seed
+```
 
 8. 画像ファイルのサイズを変更
 
 **nginx.conf**  
-`client_max_body_size 20M;`
+```
+client_max_body_size 20M;
+```
 
 **php.ini**  
 ```
