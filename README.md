@@ -61,7 +61,6 @@ post_max_size = 20M
 - Laravel 8.83.8
 - MySQL 8.0.26
 - MailHog
-- Stripe 17.3.0
 
 ## ER図
 
