@@ -11,7 +11,4 @@ class Address extends Model
 
     protected $fillable=['user_id','item_id','post_code','address','building'];
 
-    public $timestamps = false;
-
-
 }
