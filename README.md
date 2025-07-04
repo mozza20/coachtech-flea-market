@@ -69,6 +69,6 @@ post_max_size = 20M
 
 
 ## URL
-- 開発環境：`http://localhost/`
-- phpMyAdmin:：`http://localhost:8080/`
-- Mailhog:`http://localhost:8025`
+- 開発環境：(http://localhost/)
+- phpMyAdmin:：(http://localhost:8080/)
+- Mailhog:(http://localhost:8025)
