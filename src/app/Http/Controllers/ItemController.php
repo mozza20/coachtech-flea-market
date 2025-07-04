@@ -63,7 +63,7 @@ class ItemController extends Controller
         ? Mylist::where('user_id', $user->id)->pluck('item_id')->toArray()
         : [];
 
-        return view('exhibition',compact('item','comments','likedItemIds'));
+        return view('exhibition',compact('item','comments','likedItemIds','user'));
     }
     // コメントの投稿
     public function storeComment(CommentRequest $request, $item_id){
@@ -78,21 +78,24 @@ class ItemController extends Controller
 
     // 購入画面の表示
     public function purchase($item_id){
+        $payment = request()->query('payment', session('payment'));
+
         $item=Item::with('categories','condition')->findOrFail($item_id);
         $user=Auth::user();
 
         $address = Address::where('user_id', $user->id)
         ->where('item_id', $item->id)
-        ->latest() // 複数ある場合、最新のもの
+        ->orderBy('id','desc')
         ->first();
 
-        if (session()->has('payment')) {
-            session()->flash('payment', session('payment'));
-        }
-        logger()->debug('session payment', ['value' => session('payment')]);
-logger()->debug('old payment', ['value' => old('payment')]);
+        // if (session()->has('payment')) {
+        //     session()->flash('payment', session('payment'));
+        // }
+        // logger()->debug('session payment', ['value' => session('payment')]);
+        // logger()->debug('old payment', ['value' => old('payment')]);
+       
 
-        return view('purchase',compact('item','user','address'));
+        return view('purchase',compact('item','user','address','payment'));
     }
 
     // // 購入
@@ -121,7 +124,6 @@ logger()->debug('old payment', ['value' => old('payment')]);
 
     // 住所変更
     public function addressEdit(AddressRequest $request,$item_id){
-
         $item = Item::findOrFail($item_id);
         $user=Auth::user();
 
@@ -136,7 +138,12 @@ logger()->debug('old payment', ['value' => old('payment')]);
         $payment = session('payment');
         session()->flash('payment', $payment);
 
-        return redirect()->route('purchase',['item_id'=>$item->id]);
+        return redirect()->route('purchase',['item_id'=>$item->id,'payment' => $payment]);
+
+        return redirect()->route('purchase', [
+            'item_id' => $item->id,
+            'payment' => $payment,
+        ]);
     }
 
     public function toggleLike($item_id){

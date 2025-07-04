@@ -35,7 +35,7 @@ php artisan key:generate
 php artisan migrate
 ```
 
-7. シーディングの実行
+7. シーディングの実行  
 　ダミーアカウント、出品データの作成
 
 ```

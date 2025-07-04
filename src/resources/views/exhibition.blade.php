@@ -55,7 +55,7 @@
             @if(isset($comments) && $comments->count() > 0)
             @foreach($comments as $comment)
             <div class="comment__user">
-                <img class="user-img" src="">
+                <img class="user-img" src="{{asset('storage/'.$user->prof_img)}}">
                 <p class="user-name">{{$comment->user->name}}</p>
             </div>
             <p class="user-comment">{{$comment->content}}</p>

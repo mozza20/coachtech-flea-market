@@ -23,7 +23,7 @@
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <label class="payment__label">支払い方法</label>
             @php
-                $selectedPayment = old('payment', session('payment'));
+                $selectedPayment = $payment ?? old('payment');
             @endphp
             <select class="payment__method" name="payment" id="payment" onchange="updatePaymentDisplay()">
                 <option value="" hidden {{ $selectedPayment == '' ? 'selected' : '' }}>選択してください</option>
@@ -38,7 +38,7 @@
         </div>
         <div class="address">
             <p class="address__label">配送先</p>
-            <a class="address-edit__link" href="{{ route('purchase.address', ['item_id' => $item->id])}}" id="address-link">変更する</a>
+            <a class="address-edit__link" href="{{ route('purchase.address', ['item_id' => $item->id, 'payment' => $selectedPayment])}}" id="address-link">変更する</a>
             <div class="address__area">
                 @if($address)
                     <p><span>〒</span>{{optional($address)->post_code}}</p>

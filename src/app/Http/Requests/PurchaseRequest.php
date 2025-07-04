@@ -43,7 +43,7 @@ class PurchaseRequest extends FormRequest
       
             $address = \App\Models\Address::where('user_id', $user->id)
             ->where('item_id', request()->route('item_id'))
-            ->latest()
+            ->orderBy('id','desc')
             ->first();
 
             if (
