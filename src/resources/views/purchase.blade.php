@@ -17,7 +17,7 @@
             <p class="product-price"><span>￥</span>{{number_format($item['price'])}}</p>
         </div>
     </div>
-    <form action="{{ route('checkout', ['item_id' => $item->id]) }}" method="POST">
+    <form action="{{ route('purchase.complete', ['item_id' => $item->id]) }}" method="POST">
         @csrf
         <div class="payment">
             <input type="hidden" name="item_id" value="{{ $item->id }}">

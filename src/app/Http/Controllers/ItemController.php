@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ExhibitionRequest;
-// use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\PurchaseRequest;
 
 class ItemController extends Controller
 {
@@ -98,16 +98,16 @@ class ItemController extends Controller
         return view('purchase',compact('item','user','address','payment'));
     }
 
-    // // 購入
-    // public function purchaseComplete(PurchaseRequest $request,$item_id){
-    //     // 該当の商品を取得
-    //     $item = Item::findOrFail($item_id);
-    //     $item->status='sold';
-    //     $item->buyer_id=Auth::id();
-    //     $item->save();
+    // 購入
+    public function purchaseComplete(PurchaseRequest $request,$item_id){
+        // 該当の商品を取得
+        $item = Item::findOrFail($item_id);
+        $item->status='sold';
+        $item->buyer_id=Auth::id();
+        $item->save();
 
-    //     return redirect('/');
-    // }
+        return redirect('/');
+    }
 
     // 住所変更画面表示
     public function address($item_id){

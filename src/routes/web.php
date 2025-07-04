@@ -81,8 +81,8 @@ Route::middleware('auth','verified')->group(function () {
     //購入画面の表示
     Route::get('/purchase/{item_id}',[ItemController::class,'purchase'])->name('purchase');
 
-    // // 購入
-    // Route::post('/purchase/{item_id}/complete',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
+    // 購入
+    Route::post('/purchase/{item_id}',[ItemController::class,'purchaseComplete'])->name('purchase.complete');
 
     // 住所変更画面表示
     Route::get('/purchase/address/{item_id}',[ItemController::class,'address'])->name('purchase.address');
@@ -90,10 +90,10 @@ Route::middleware('auth','verified')->group(function () {
     // 住所の変更
     Route::post('/purchase/address/{item_id}',[ItemController::class,'addressEdit'])->name('address.edit');
 
-    // stripeでの支払い
-    Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
-    Route::get('/checkout/success', [PaymentController::class, 'success'])->name('checkout.success');
-    Route::get('/checkout/cancel/{item_id}', [PaymentController::class, 'cancel'])->name('checkout.cancel');
+    // // stripeでの支払い
+    // Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+    // Route::get('/checkout/success', [PaymentController::class, 'success'])->name('checkout.success');
+    // Route::get('/checkout/cancel/{item_id}', [PaymentController::class, 'cancel'])->name('checkout.cancel');
 
     //いいね機能
     // 一覧表示
